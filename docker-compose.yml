@@ -1,0 +1,67 @@
+version: '3.8'
+
+networks:
+  laravel:
+
+volumes:
+  pgadmin:
+
+services:
+  nginx:
+    image: nginx:alpine
+    command: nginx -g "daemon off;"
+    container_name: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./src:/var/www
+      - ./nginx/conf.d/:/etc/nginx/conf.d
+    depends_on:
+      - php
+      - db
+    networks:
+      - laravel
+
+  php:
+    container_name: app
+    build:
+      context: ./php
+      dockerfile: Dockerfile 
+    volumes:
+      - ./src:/var/www
+    ports:
+      - "9000:9000"
+    networks:
+      - laravel
+    working_dir: /var/www
+
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: root
+      POSTGRES_DB: expense
+    volumes:
+      - ./postgresql/data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    tty: true
+    networks:
+      - laravel
+
+  pgadmin:
+    container_name: pgadmin_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: root
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+       - pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
+    networks:
+      - laravel
+    restart: unless-stopped
