@@ -10,10 +10,15 @@ use Illuminate\Support\Facades\App;
 class UserController extends Controller
 {    
     /**
-     * signup
+     * Signup
      *
      * @param  UserSignUpRequest $request
      * @return void
+     * @group User Authentication
+     * @bodyParam email required The email of the user. Example:hanieasemi@gmail.com
+     * @bodyParam password required The password of the user. Example:password
+     * @bodyParam currency_id int required The currency_id of the user. Example:9
+     * @bodyParam username string required The username of the user. Example:username
      */
     public function signup(UserSignUpRequest $request)
     {

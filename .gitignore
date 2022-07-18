@@ -13,3 +13,5 @@ yarn-error.log
 /.idea
 /.vscode
 /postgresql
+src/public/vendor
+src/resources/views
