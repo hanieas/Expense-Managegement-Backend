@@ -6,7 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'username',
+        'currency_id',
         'email',
         'password',
     ];
@@ -41,4 +42,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Appends new attributes
+     *
+     * @var array
+     */
+    protected $append = [
+        'signup_path'
+    ];
+
+
+    /**
+     * getSignupPathAttribute
+     *
+     * @return string
+     */
+    public function getSignupPathAttribute()
+    {
+        return env('PREFIX_URL') . 'user/signup';
+    }
+
+    /**
+     * The user should has a currency
+     *
+     * @return void
+     */
+    public function currency()
+    {
+        return $this->belongsTo(Currency::class);
+    }
 }
