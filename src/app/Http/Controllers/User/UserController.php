@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\User\UserLoginRequest;
 use App\Http\Requests\User\UserSignUpRequest;
+use App\UseCase\User\UserLoginHandler;
 use App\UseCase\User\UserSignUpHandler;
 use Illuminate\Support\Facades\App;
 
@@ -25,9 +27,20 @@ class UserController extends Controller
         $useCase = App::make(UserSignUpHandler::class);
         return $useCase->handle($request->validated());
     }
-
-    public function login()
+    
+    /**
+     * Login
+     *
+     * @param  UserLoginRequest $request
+     * @return void
+     * @group User Authentication
+     * @bodyParam email required The email of user. Example:hanieasemi@gmail.com
+     * @bodyParam password required The password of user. Example:password
+     */
+    public function login(UserLoginRequest $request)
     {
+        $useCase = App::make(UserLoginHandler::class);
+        return $useCase->handle($request->validated());
     }
 
     public function logout()
