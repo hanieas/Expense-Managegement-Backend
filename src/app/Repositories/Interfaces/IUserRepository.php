@@ -12,10 +12,14 @@ interface IUserRepository
      * @return Model
      */
     public function signup(array $request):Model;
-    
        
     /**
      * @return Model
      */
     public function login():Model;
+    
+    /**
+     * @return bool
+     */
+    public function logout():bool;
 }

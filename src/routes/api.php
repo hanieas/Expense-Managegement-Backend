@@ -16,8 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['middleware' => ['guest'], 'prefix' => env('VERSION') ],function(){
-    Route::post('/user/signup', [UserController::class, 'signup']);
-    Route::post('/user/login', [UserController::class, 'login']);
-});
+Route::group(['prefix' => env('VERSION')],function()
+{
+    Route::group(['middleware' => ['guest']],function()
+    {
+        Route::post('/user/signup', [UserController::class, 'signup']);
+        Route::post('/user/login', [UserController::class, 'login']);
+    });
 
+    Route::group(['middleware' => ['auth:api']],function()
+    {
+        Route::post('/user/logout',[UserController::class,'logout']);
+    });
+});

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UserLoginRequest;
 use App\Http\Requests\User\UserSignUpRequest;
 use App\UseCase\User\UserLoginHandler;
+use App\UseCase\User\UserLogoutHandler;
 use App\UseCase\User\UserSignUpHandler;
 use Illuminate\Support\Facades\App;
 
@@ -42,8 +43,16 @@ class UserController extends Controller
         $useCase = App::make(UserLoginHandler::class);
         return $useCase->handle($request->validated());
     }
-
+    
+    /**
+     * Logout
+     *
+     * @return void
+     * @group User Authentication
+     */
     public function logout()
     {
+        $useCase = App::make(UserLogoutHandler::class);
+        return $useCase->handle();
     }
 }

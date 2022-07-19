@@ -2,12 +2,10 @@
 
 namespace App\UseCase;
 
-use App\DTO\IDTO;
-
 interface IUseCase
 {
     /**
-     * @param  array $request
+     * @param  mixed $request
      * @return mixed
      */
     public function handle(array $request): mixed;
