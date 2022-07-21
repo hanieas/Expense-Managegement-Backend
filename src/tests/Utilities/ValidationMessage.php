@@ -14,3 +14,4 @@ class ValidationMessage
     const USERNAME_IS_REQUIRED =  "The username field is required.";
     const USERNAME_SHOULD_BE_LEAST_6_CHAR =  "The username must be at least 6 characters.";
 }
+

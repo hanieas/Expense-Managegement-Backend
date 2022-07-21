@@ -6,10 +6,12 @@ use App\Models\Currency;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Artisan;
+use Laravel\Passport\Passport;
 use Tests\TestCase;
+use Tests\Utilities\MiddlewareMessage;
 use Tests\Utilities\ValidationMessage;
 
-class AuthenticationTest extends TestCase
+class UserSignUpTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -26,19 +28,7 @@ class AuthenticationTest extends TestCase
     /**
      * @var string
      */
-    protected string $email, $username, $password;
-
-    /**
-     * @param  array $attributes
-     * @return mixed
-     */
-    private function makeApiResponse(array $attributes = []): mixed
-    {
-        $response = $this->withHeaders([
-            'Accept' => 'application/json'
-        ])->post($this->user->signup_path, $attributes);
-        return $response;
-    }
+    protected string $email, $username, $password, $url;
 
     public function setUp(): void
     {
@@ -49,6 +39,18 @@ class AuthenticationTest extends TestCase
         $this->email = 'user@gmail.com';
         $this->username = 'username';
         $this->password = 'password';
+        $this->url = $this->user->signup_path;
+    }
+
+    public function test_a_singed_in_user_cant_signup()
+    {
+        Artisan::call('passport:install');
+
+        /** @var User */
+        $user = Passport::actingAs($this->user);
+        $token = $user->createToken('Api token')->accessToken;
+        $response = $this->makeApiResponse(['Authorization' => 'Bearer ' . $token], $this->url);
+        $response->assertJson(['message' => MiddlewareMessage::GUEST]);
     }
 
     public function test_a_user_can_signup()
@@ -62,7 +64,7 @@ class AuthenticationTest extends TestCase
             'currency_id' => $this->currency->id
         ];
 
-        $response = $this->makeApiResponse($attributes);
+        $response = $this->makeApiResponse($attributes,$this->url);
 
         $response->assertStatus(200);
     }
@@ -73,7 +75,7 @@ class AuthenticationTest extends TestCase
             'username' => $this->username,
             'password' => $this->password,
             'currency_id' => $this->currency->id
-        ]);
+        ],$this->url);
 
         $response->assertJson([
             'errors' => [
@@ -91,7 +93,7 @@ class AuthenticationTest extends TestCase
             'username' => $this->username,
             'password' => $this->password,
             'currency_id' => $this->currency->id
-        ]);
+        ],$this->url);
 
         $response->assertJson([
             'errors' => [
@@ -110,7 +112,7 @@ class AuthenticationTest extends TestCase
             'username' => $this->username,
             'password' => $this->password,
             'currency_id' => $this->currency->id
-        ]);
+        ],$this->url);
 
         $response->assertJson([
             'errors' => [
@@ -127,7 +129,7 @@ class AuthenticationTest extends TestCase
             'email' => $this->email,
             'username' => $this->password,
             'currency_id' => $this->currency->id
-        ]);
+        ],$this->url);
 
         $response->assertJson([
             'errors' => [
@@ -145,7 +147,7 @@ class AuthenticationTest extends TestCase
             'username' => $this->username,
             'password' => 'pass',
             'currency_id' => $this->currency->id
-        ]);
+        ],$this->url);
 
         $response->assertJson([
             'errors' => [
@@ -162,7 +164,7 @@ class AuthenticationTest extends TestCase
             'email' => $this->email,
             'username' => $this->username,
             'password' => $this->password
-        ]);
+        ],$this->url);
 
         $response->assertJson([
             'errors' => [
@@ -180,7 +182,7 @@ class AuthenticationTest extends TestCase
             'username' => $this->username,
             'password' => $this->password,
             'currency_id' => 123456
-        ]);
+        ],$this->url);
 
         $response->assertJson([
             'errors' => [
@@ -198,7 +200,7 @@ class AuthenticationTest extends TestCase
             'username' => $this->username,
             'password' => $this->password,
             'currency_id' => 'string_currency_id'
-        ]);
+        ],$this->url);
 
         $response->assertJson([
             'errors' => [
@@ -215,7 +217,7 @@ class AuthenticationTest extends TestCase
             'email' => $this->email,
             'password' => $this->password,
             'currency_id' => $this->currency->id
-        ]);
+        ],$this->url);
 
         $response->assertJson([
             'errors' => [
@@ -233,7 +235,7 @@ class AuthenticationTest extends TestCase
             'username' => 'name',
             'password' => $this->password,
             'currency_id' => $this->currency->id
-        ]);
+        ],$this->url);
 
         $response->assertJson([
             'errors' => [

@@ -60,7 +60,27 @@ class User extends Authenticatable
      */
     public function getSignupPathAttribute()
     {
-        return env('PREFIX_URL') . 'user/signup';
+        return env('PREFIX_URL') . '/user/signup';
+    }
+
+    /**
+     * getLoginPathAttribute
+     *
+     * @return string
+     */
+    public function getLoginPathAttribute()
+    {
+        return env('PREFIX_URL') . '/user/login';
+    }
+
+    /**
+     * getLogoutPathAttribute
+     *
+     * @return string
+     */
+    public function getLogoutPathAttribute()
+    {
+        return env('PREFIX_URL') . '/user/logout';
     }
 
     /**
