@@ -27,15 +27,15 @@ class UserLoginHandler implements IUseCase
     }
     
     /**
-     * @param  array $request
+     * @param  array $data
      * @return mixed
      */
-    public function handle(array $request): mixed
+    public function handle(mixed $data): mixed
     {
-        if (Auth::attempt($request)) {
-            $data = $this->repository->login();
-            return $this->responder->resourceRespond($data);
+        if (Auth::attempt($data)) {
+            $response = $this->repository->login();
+            return $this->responder->resourceRespond($response);
         }
-        return $this->responder->failed('email or password is incorrect', 422, $request);
+        return $this->responder->failed('email or password is incorrect', 422, $data);
     }
 }

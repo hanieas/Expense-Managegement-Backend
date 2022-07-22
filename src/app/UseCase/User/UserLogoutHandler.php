@@ -27,10 +27,10 @@ class UserLogoutHandler implements IUseCase
     }
       
     /**
-     * @param  mixed $request
+     * @param  mixed $data
      * @return mixed
      */
-    public function handle($request = null): mixed
+    public function handle($data): mixed
     {
         if ($this->repository->logout()) {
             return $this->responder->message('You have been successfully logged out.');

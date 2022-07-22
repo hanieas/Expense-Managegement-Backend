@@ -30,13 +30,13 @@ class UserSignUpHandler implements IUseCase
     }
         
     /**
-     * @param  array $request
+     * @param  mixed $data
      * @return mixed
      */
-    public function handle(array $request): mixed
+    public function handle(mixed $data): mixed
     {
-        $request['password'] = bcrypt($request['password']);
-        $data = $this->repository->signup($request);
-        return $this->responder->resourceRespond($data);
+        $data['password'] = bcrypt($data['password']);
+        $response = $this->repository->signup($data);
+        return $this->responder->resourceRespond($response);
     }
 }
