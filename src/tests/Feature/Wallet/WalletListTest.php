@@ -6,12 +6,11 @@ use App\Models\Currency;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 use Tests\Utilities\MiddlewareMessage;
-use Tests\Utilities\ValidationMessage;
 
-class WalletShowTest extends TestCase
+class WalletListTest extends TestCase
 {
     use DatabaseMigrations;
 
@@ -20,9 +19,6 @@ class WalletShowTest extends TestCase
 
     /** @var Currency */
     protected Currency $currency;
-
-    /** @var Wallet */
-    protected Wallet $wallet;
 
     /** @var string */
     protected string $url, $name, $correct_inventory, $incorrect_inventory, $new_name;
@@ -33,12 +29,10 @@ class WalletShowTest extends TestCase
 
         $this->currency = Currency::factory()->create();
         $this->user = User::factory()->create();
-        $this->name = 'Wallet';
-        $this->wallet = Wallet::factory()->create([
+        $this->wallets = Wallet::factory(5)->create([
             'user_id' => $this->user->id,
-            'name' => $this->name
         ]);
-        $this->url = $this->wallet->path;
+        $this->url = $this->wallets[0]->path;
     }
 
     public function test_an_unautenticated_user_cant_show_wallet()
@@ -47,35 +41,19 @@ class WalletShowTest extends TestCase
         $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
     }
 
-    public function test_just_wallet_owner_can_show_wallet()
-    {
-        $token = $this->generateToken(User::factory()->create());
-        $response = $this->callRequest(
-            'get',
-            $this->url . '/' . $this->wallet->id,
-            [
-                'Authorization' => 'Bearer ' . $token
-            ]
-        );
-        $response->assertJson(['error' => ValidationMessage::ONLY_WALLET_OWNER_CAN_GET_WALLET])
-            ->assertStatus(403);
-    }
-
-    public function test_a_signed_in_owner_user_can_get_wallet()
+    public function test_a_signed_in_owner_user_can_get_list_of_wallets()
     {
         $token = $this->generateToken($this->user);
-        Gate::define('check-wallet-own', function () {
-            return true;
-        });
         $response = $this->callRequest(
             'get',
-            $this->url . '/' . $this->wallet->id,
+            $this->url,
             [
                 'Authorization' => 'Bearer ' . $token
             ]
         );
         $response->assertStatus(200)
-            ->assertJsonPath('data.name', $this->wallet->name)
-            ->assertJsonPath('data.inventory', $this->wallet->inventory);
+            ->assertJson(fn (AssertableJson $json) =>
+            $json->has('meta')
+                ->has('data.items', 5));
     }
 }

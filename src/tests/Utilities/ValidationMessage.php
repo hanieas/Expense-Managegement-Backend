@@ -15,6 +15,7 @@ class ValidationMessage
     const USERNAME_SHOULD_BE_LEAST_6_CHAR =  "The username must be at least 6 characters.";
     const WALLET_NAME_IS_REQUIRED = "The name field is required.";
     const WALLET_INVENTORY_SHOULD_BE_INTEGER = "The inventory must be an integer.";
+    const WALLET_INVENTORY_IS_REUQIRED = "The inventory field is required.";
     const WALLET_NAME_SHOULD_BE_UNIQUE = "The name has already been taken.";
     const ONLY_WALLET_OWNER_CAN_GET_WALLET = "You dont own this wallet.";
 }

@@ -19,7 +19,7 @@ abstract class TestCase extends BaseTestCase
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json'
-        ])->$method($url, $attributes);
+        ])->{$method}($url, $attributes);
         return $response;
     }
 

@@ -40,14 +40,14 @@ class WalletDeleteTest extends TestCase
 
     public function test_an_unautenticated_user_cant_delete_wallet()
     {
-        $response = $this->callRequest('delete', $this->url.'/'.$this->wallet->id,[]);
+        $response = $this->callRequest('delete', $this->url . '/' . $this->wallet->id, []);
         $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
     }
 
     public function test_just_wallet_owner_can_delete_wallet()
     {
         $token = $this->generateToken(User::factory()->create());
-        $response = $this->call('delete',$this->url . '/' . $this->wallet->id,[
+        $response = $this->callRequest('delete', $this->url . '/' . $this->wallet->id, [
             'Authorization' => 'Bearer ' . $token
         ]);
         $response->assertJson(['error' => ValidationMessage::ONLY_WALLET_OWNER_CAN_GET_WALLET])
@@ -60,9 +60,12 @@ class WalletDeleteTest extends TestCase
         Gate::define('check-wallet-own', function () {
             return true;
         });
-        $response = $this->call('delete', $this->url . '/' . $this->wallet->id,[
+        $response = $this->callRequest('delete', $this->url . '/' . $this->wallet->id, [
             'Authorization' => 'Bearer ' . $token
         ]);
         $response->assertStatus(200);
+        $this->assertSoftDeleted('wallets',[
+            'id' => $this->wallet->id,
+        ]);;
     }
 }
