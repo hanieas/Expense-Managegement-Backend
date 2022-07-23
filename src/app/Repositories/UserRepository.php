@@ -33,12 +33,26 @@ class UserRepository extends BaseRepository implements IUserRepository
     /**
      * @return Model
      */
-    public function login(): Model
+    public function createToken(): Model
     {
         /** @var \App\Models\User $user */
         $user = Auth::user();
         $user->token = $user->createToken('Api Token')->accessToken;
         return $user;
+    }
+    
+    /**
+     * Authentication attempt
+     *
+     * @param  array $attributes
+     * @return bool
+     */
+    public function authAttempt(array $attributes): bool
+    {
+        if (Auth::attempt($attributes)) {
+           return true;
+        }
+        return false;
     }
     
     /**

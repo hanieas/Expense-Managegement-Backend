@@ -1,8 +1,6 @@
 <?php
 
-use App\Http\Controllers\User\UserController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
