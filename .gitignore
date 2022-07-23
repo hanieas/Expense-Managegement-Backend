@@ -15,4 +15,3 @@ yarn-error.log
 /postgresql
 src/public/vendor
 src/resources/views
-src/app/.DS_Store

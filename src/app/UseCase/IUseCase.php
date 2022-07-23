@@ -5,8 +5,8 @@ namespace App\UseCase;
 interface IUseCase
 {
     /**
-     * @param  mixed $data
+     * @param  mixed $request
      * @return mixed
      */
-    public function handle(mixed $data): mixed;
+    public function handle(array $request): mixed;
 }
