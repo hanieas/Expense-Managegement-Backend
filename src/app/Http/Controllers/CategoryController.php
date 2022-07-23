@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Category\CategoryStoreRequest;
+use App\Models\Category;
 use App\Repositories\CategoryRepository;
 use App\Repositories\Interfaces\ICategoryRepository;
 use App\Responders\CategoryResponder;
@@ -34,7 +35,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function index()
     {
@@ -45,7 +46,7 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function store(CategoryStoreRequest $request): JsonResponse
     {
@@ -57,11 +58,15 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
-    public function show($id)
+    public function show(Category $category):JsonResponse
     {
-        //
+        if($this->repository->checkOwn($category))
+        {
+            return $this->responder->respondResource($category);
+        }
+        return $this->responder->message('You dont own this category',403);
     }
 
     /**
@@ -69,7 +74,7 @@ class CategoryController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function update(Request $request, $id)
     {
@@ -80,7 +85,7 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return JsonResponse
      */
     public function destroy($id)
     {

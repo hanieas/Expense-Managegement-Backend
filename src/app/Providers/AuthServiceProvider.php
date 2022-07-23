@@ -31,5 +31,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('check-wallet-own',function($user,$wallet){
             return $user->id === $wallet->user_id;
         });
+
+        Gate::define('check-category-own',function($user,$category){
+            return $user->id === $category->user_id;
+        });
     }
 }
