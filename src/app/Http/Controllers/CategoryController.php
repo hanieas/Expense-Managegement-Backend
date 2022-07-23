@@ -2,10 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Category\CategoryStoreRequest;
+use App\Repositories\CategoryRepository;
+use App\Repositories\Interfaces\ICategoryRepository;
+use App\Responders\CategoryResponder;
+use App\Responders\IResponder;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+    /** @var CategoryRepositoy */
+    protected ICategoryRepository $repository;
+
+    /** @var CategoryResponder */
+    protected IResponder $responder;
+
+    /**
+     * CategoryController Constructor
+     *
+     * @param  CategoryRepository $repository
+     * @param  CategoryResponder $responder
+     * @return void
+     */
+    public function __construct(ICategoryRepository $repository, IResponder $responder)
+    {
+        $this->repository = $repository;
+        $this->responder = $responder;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -22,9 +47,10 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CategoryStoreRequest $request): JsonResponse
     {
-        //
+        $response = $this->repository->create($request->validated());
+        return $this->responder->respondResource($response);
     }
 
     /**

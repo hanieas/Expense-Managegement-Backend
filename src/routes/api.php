@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
 use Illuminate\Support\Facades\Route;
@@ -27,5 +28,6 @@ Route::group(['prefix' => env('VERSION')],function()
     {
         Route::post('/user/logout',[UserController::class,'logout']);
         Route::apiResource('/wallets',WalletController::class);
+        Route::apiResource('/categories',CategoryController::class);
     });
 });

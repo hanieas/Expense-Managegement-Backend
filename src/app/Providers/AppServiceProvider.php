@@ -2,12 +2,16 @@
 
 namespace App\Providers;
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WalletController;
+use App\Models\Category;
 use App\Models\User;
 use App\Models\Wallet;
+use App\Repositories\CategoryRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\WalletRepository;
+use App\Responders\CategoryResponder;
 use App\Responders\UserResponder;
 use App\Responders\WalletResponder;
 use Illuminate\Support\ServiceProvider;
@@ -35,6 +39,14 @@ class AppServiceProvider extends ServiceProvider
         });
         $this->app->bind(WalletController::class,function($app){
             return new WalletController($app->make(WalletRepository::class),$app->make(WalletResponder::class));
+        });
+
+        // Category
+        $this->app->bind(CategoryRepository::class,function($app){
+            return new CategoryRepository($app->make(Category::class));
+        });
+        $this->app->bind(CategoryController::class,function($app){
+            return new CategoryController($app->make(CategoryRepository::class),$app->make(CategoryResponder::class));
         });
     }
 
