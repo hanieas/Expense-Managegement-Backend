@@ -7,7 +7,6 @@ use App\Http\Requests\User\UserLoginRequest;
 use App\Http\Requests\User\UserSignUpRequest;
 use App\Repositories\Interfaces\IUserRepository;
 use App\Responders\IResponder;
-use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -72,6 +71,7 @@ class UserController extends Controller
      *
      * @return JsonResponse
      * @group User Authentication
+     * @authenticated
      */
     public function logout()
     {

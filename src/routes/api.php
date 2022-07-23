@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\WalletController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,8 +23,9 @@ Route::group(['prefix' => env('VERSION')],function()
         Route::post('/user/login', [UserController::class, 'login']);
     });
 
-    Route::group(['middleware' => ['auth:api']],function()
+    Route::group(['middleware' => ['auth:api','getUser']],function()
     {
         Route::post('/user/logout',[UserController::class,'logout']);
+        Route::apiResource('/wallets',WalletController::class);
     });
 });

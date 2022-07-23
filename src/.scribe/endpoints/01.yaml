@@ -1,0 +1,42 @@
+name: 'Wallet CRUD'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/wallets
+    metadata:
+      title: 'Store a Wallet'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: 'The ID of owner user, No need to fill this field. This will extract automatically from token.'
+        required: true
+        example: 19
+        type: integer
+        custom: []
+      name:
+        name: name
+        description: 'The name of the wallet.'
+        required: true
+        example: Mellat
+        type: string
+        custom: []
+      inventory:
+        name: inventory
+        description: 'The inventory of the Wallet.'
+        required: false
+        example: 10000
+        type: integer
+        custom: []
+    responses: []
+    responseFields: []

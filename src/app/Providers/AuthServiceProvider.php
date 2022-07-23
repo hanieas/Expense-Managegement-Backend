@@ -27,5 +27,9 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         Passport::routes();
+
+        Gate::define('check-wallet-own',function($user,$wallet){
+            return $user->id === $wallet->user_id;
+        });
     }
 }

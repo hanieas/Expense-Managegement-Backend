@@ -46,3 +46,52 @@ endpoints:
         custom: []
     responses: []
     responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/login
+    metadata:
+      title: Login
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'The email of user.'
+        required: false
+        example: hanieasemi@gmail.com
+        type: required
+        custom: []
+      password:
+        name: password
+        description: 'The password of user.'
+        required: false
+        example: password
+        type: required
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/logout
+    metadata:
+      title: Logout
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
