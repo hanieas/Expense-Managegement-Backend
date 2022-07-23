@@ -20,9 +20,13 @@ class BaseRepository implements IBaseRepository
     {
         $this->model = $model;
     }
-
-    public function create(array $request):Model
+    
+    /**
+     * @param  array $attributes
+     * @return Model
+     */
+    public function create(array $attributes):Model
     {
-        return $this->model->create($request);
+        return $this->model->create($attributes);
     }
 }
