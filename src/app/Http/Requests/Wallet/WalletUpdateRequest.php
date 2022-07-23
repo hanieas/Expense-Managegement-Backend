@@ -3,6 +3,8 @@
 namespace App\Http\Requests\Wallet;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 class WalletUpdateRequest extends FormRequest
 {
@@ -13,7 +15,7 @@ class WalletUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +26,33 @@ class WalletUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => [
+                'required',
+                Rule::unique('wallets')->where(function ($query) {
+                    return $query->where('name', '=', request()->name)
+                        ->where('user_id', '=', Auth::user()->id);
+                })->ignore($this->wallet->id)
+            ],
+            'inventory' => 'required|integer',
+        ];
+    }
+
+    /**
+     * bodyParameters
+     *
+     * @return array
+     */
+    public function bodyParameters()
+    {
+        return [
+            'name' => [
+                'description' => 'The name of the wallet.',
+                'example' => 'Mellat'
+            ],
+            'inventory' => [
+                'description' => 'The inventory of the Wallet.',
+                'example' => 10000,
+            ],
         ];
     }
 }
