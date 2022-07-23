@@ -15,4 +15,5 @@ interface IResponder
 
     public function respondResource(mixed $data, int $status = 200, array $headers = []): JsonResponse;
 
+    public function respondCollection(mixed $data, int $status = 200, array $headers = []): JsonResponse;
 }

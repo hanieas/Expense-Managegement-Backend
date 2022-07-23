@@ -92,4 +92,14 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Currency::class);
     }
+    
+    /**
+     * The user has a list of wallets
+     *
+     * @return void
+     */
+    public function wallets()
+    {
+        return $this->hasMany(Wallet::class,'user_id');
+    }
 }

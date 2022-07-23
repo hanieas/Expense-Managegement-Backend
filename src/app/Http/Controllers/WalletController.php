@@ -31,6 +31,19 @@ class WalletController extends Controller
         $this->repository = $repository;
         $this->responder = $responder;
     }
+    
+    /**
+     * Get the list of wallets for the signed in user.
+     *
+     * @return JsonResponse
+     * @group Wallet CRUD
+     * @authenticated
+     */
+    public function index(): JsonResponse
+    {
+        $response = $this->repository->getList();
+        return $this->responder->respondCollection($response);
+    }
 
     /**
      * Store a Wallet
@@ -61,7 +74,7 @@ class WalletController extends Controller
         }
         return $this->responder->failed('You dont own this wallet', 403);
     }
-    
+
     /**
      * Update The Wallet
      *
@@ -71,7 +84,7 @@ class WalletController extends Controller
      * @group Wallet CRUD
      * @authenticated
      */
-    public function update(WalletUpdateRequest $request,Wallet $wallet): JsonResponse
+    public function update(WalletUpdateRequest $request, Wallet $wallet): JsonResponse
     {
         if ($this->repository->checkOwn($wallet)) {
             $wallet->update($request->validated());
@@ -79,7 +92,7 @@ class WalletController extends Controller
         }
         return $this->responder->failed('You dont own this wallet', 403);
     }
-    
+
     /**
      * Delete a Wallet
      *
@@ -92,7 +105,7 @@ class WalletController extends Controller
     {
         if ($this->repository->checkOwn($wallet)) {
             $wallet->delete();
-            return $this->responder->message('Your wallet is deleted successfully',200);
+            return $this->responder->message('Your wallet is deleted successfully', 200);
         }
         return $this->responder->failed('You dont own this wallet', 403);
     }
