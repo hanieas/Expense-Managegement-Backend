@@ -72,7 +72,7 @@ class WalletController extends Controller
         if ($this->repository->checkOwn($wallet)) {
             return $this->responder->respondResource($wallet);
         }
-        return $this->responder->failed('You dont own this wallet', 403);
+        return $this->responder->failed('You dont own this wallet.', 403);
     }
 
     /**
@@ -90,7 +90,7 @@ class WalletController extends Controller
             $wallet->update($request->validated());
             return $this->responder->respondResource($wallet);
         }
-        return $this->responder->failed('You dont own this wallet', 403);
+        return $this->responder->failed('You dont own this wallet.', 403);
     }
 
     /**
@@ -107,6 +107,6 @@ class WalletController extends Controller
             $wallet->delete();
             return $this->responder->message('Your wallet is deleted successfully', 200);
         }
-        return $this->responder->failed('You dont own this wallet', 403);
+        return $this->responder->failed('You dont own this wallet.', 403);
     }
 }

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->unique(['user_id','name']);
             $table->bigInteger('inventory')->default(0);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

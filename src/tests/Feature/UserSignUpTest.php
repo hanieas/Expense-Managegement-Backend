@@ -44,12 +44,8 @@ class UserSignUpTest extends TestCase
 
     public function test_a_singed_in_user_cant_signup()
     {
-        Artisan::call('passport:install');
-
-        /** @var User */
-        $user = Passport::actingAs($this->user);
-        $token = $user->createToken('Api token')->accessToken;
-        $response = $this->makeApiResponse(['Authorization' => 'Bearer ' . $token], $this->url);
+        $token = $this->generateToken($this->user);
+        $response = $this->callRequest('post', $this->url, ['Authorization' => 'Bearer ' . $token]);
         $response->assertJson(['message' => MiddlewareMessage::GUEST]);
     }
 
@@ -64,18 +60,18 @@ class UserSignUpTest extends TestCase
             'currency_id' => $this->currency->id
         ];
 
-        $response = $this->makeApiResponse($attributes,$this->url);
+        $response = $this->callRequest('post',$this->url,$attributes);
 
         $response->assertStatus(200);
     }
 
     public function test_email_is_required_for_signup()
     {
-        $response = $this->makeApiResponse([
+        $response = $this->callRequest('post',$this->url,[
             'username' => $this->username,
             'password' => $this->password,
             'currency_id' => $this->currency->id
-        ],$this->url);
+        ]);
 
         $response->assertJson([
             'errors' => [
@@ -88,12 +84,12 @@ class UserSignUpTest extends TestCase
 
     public function test_email_should_be_unique()
     {
-        $response = $this->makeApiResponse([
+        $response = $this->callRequest('post',$this->url,[
             'email' => $this->user->email,
             'username' => $this->username,
             'password' => $this->password,
             'currency_id' => $this->currency->id
-        ],$this->url);
+        ]);
 
         $response->assertJson([
             'errors' => [
@@ -107,12 +103,12 @@ class UserSignUpTest extends TestCase
     public function test_email_should_have_specific_format()
     {
 
-        $response = $this->makeApiResponse([
+        $response = $this->callRequest('post',$this->url,[
             'email' => 'email',
             'username' => $this->username,
             'password' => $this->password,
             'currency_id' => $this->currency->id
-        ],$this->url);
+        ]);
 
         $response->assertJson([
             'errors' => [
@@ -125,11 +121,11 @@ class UserSignUpTest extends TestCase
 
     public function test_password_is_required_for_signup()
     {
-        $response = $this->makeApiResponse([
+        $response = $this->callRequest('post',$this->url,[
             'email' => $this->email,
             'username' => $this->password,
             'currency_id' => $this->currency->id
-        ],$this->url);
+        ]);
 
         $response->assertJson([
             'errors' => [
@@ -142,12 +138,12 @@ class UserSignUpTest extends TestCase
 
     public function test_password_should_not_less_than_6_characters()
     {
-        $response = $this->makeApiResponse([
+        $response = $this->callRequest('post',$this->url,[
             'email' => $this->email,
             'username' => $this->username,
             'password' => 'pass',
             'currency_id' => $this->currency->id
-        ],$this->url);
+        ]);
 
         $response->assertJson([
             'errors' => [
@@ -160,11 +156,11 @@ class UserSignUpTest extends TestCase
 
     public function test_currency_id_is_required()
     {
-        $response = $this->makeApiResponse([
+        $response = $this->callRequest('post', $this->url,[
             'email' => $this->email,
             'username' => $this->username,
             'password' => $this->password
-        ],$this->url);
+        ]);
 
         $response->assertJson([
             'errors' => [
@@ -177,12 +173,12 @@ class UserSignUpTest extends TestCase
 
     public function test_currency_id_should_exist_in_table()
     {
-        $response = $this->makeApiResponse([
+        $response = $this->callRequest('post',$this->url,[
             'email' => $this->email,
             'username' => $this->username,
             'password' => $this->password,
             'currency_id' => 123456
-        ],$this->url);
+        ]);
 
         $response->assertJson([
             'errors' => [
@@ -195,12 +191,12 @@ class UserSignUpTest extends TestCase
 
     public function test_currency_id_should_be_integer()
     {
-        $response = $this->makeApiResponse([
+        $response = $this->callRequest('post',$this->url,[
             'email' => $this->email,
             'username' => $this->username,
             'password' => $this->password,
             'currency_id' => 'string_currency_id'
-        ],$this->url);
+        ]);
 
         $response->assertJson([
             'errors' => [
@@ -213,11 +209,11 @@ class UserSignUpTest extends TestCase
 
     public function test_username_is_required()
     {
-        $response = $this->makeApiResponse([
+        $response = $this->callRequest('post',$this->url,[
             'email' => $this->email,
             'password' => $this->password,
             'currency_id' => $this->currency->id
-        ],$this->url);
+        ]);
 
         $response->assertJson([
             'errors' => [
@@ -230,12 +226,12 @@ class UserSignUpTest extends TestCase
 
     public function test_username_should_not_less_than_6_characters()
     {
-        $response = $this->makeApiResponse([
+        $response = $this->callRequest('post',$this->url,[
             'email' => $this->email,
             'username' => 'name',
             'password' => $this->password,
             'currency_id' => $this->currency->id
-        ],$this->url);
+        ]);
 
         $response->assertJson([
             'errors' => [

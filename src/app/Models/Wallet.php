@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Wallet extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
 
     /**
      * @var array
@@ -17,13 +18,6 @@ class Wallet extends Model
         'user_id',
         'inventory',
     ];
-
-    /**
-     * @var array
-     */
-    protected $hidden = [
-        'user_id',
-    ];
     
     /**
      * @var array
@@ -31,6 +25,17 @@ class Wallet extends Model
     protected $with=[
         'user',
     ];
+    
+    /**
+     * getPathAttribute
+     *
+     * @return string
+     */
+    public function getPathAttribute(): string
+    {
+        return env('PREFIX_URL') . '/wallets';
+    }
+
 
     /**
      * Each wallet belongs to a user

@@ -34,18 +34,14 @@ class UserLogoutTest extends TestCase
 
     public function test_a_signed_in_user_can_logout()
     {
-        Artisan::call('passport:install');
-
-        /** @var User */
-        $user = Passport::actingAs($this->user);
-        $token = $user->createToken('Api token')->accessToken;
-        $response = $this->makeApiResponse(['Authorization' => 'Bearer ' . $token], $this->url);
+        $token = $this->generateToken($this->user);
+        $response = $this->callRequest('post', $this->url, ['Authorization' => 'Bearer ' . $token]);
         $response->assertStatus(200);
     }
 
     public function test_a_not_signed_in_user_cant_logout()
     {
-        $response = $this->makeApiResponse([], $this->url);
+        $response = $this->callRequest('post', $this->url);
         $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
     }
 }

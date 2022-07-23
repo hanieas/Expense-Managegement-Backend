@@ -13,5 +13,9 @@ class ValidationMessage
     const CURRENY_ID_SHOULD_BE_INTEGER = "The currency id must be an integer.";
     const USERNAME_IS_REQUIRED =  "The username field is required.";
     const USERNAME_SHOULD_BE_LEAST_6_CHAR =  "The username must be at least 6 characters.";
+    const WALLET_NAME_IS_REQUIRED = "The name field is required.";
+    const WALLET_INVENTORY_SHOULD_BE_INTEGER = "The inventory must be an integer.";
+    const WALLET_NAME_SHOULD_BE_UNIQUE = "The name has already been taken.";
+    const ONLY_WALLET_OWNER_CAN_GET_WALLET = "You dont own this wallet.";
 }
 
