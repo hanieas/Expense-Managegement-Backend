@@ -4,6 +4,8 @@ namespace App\Repositories;
 
 use App\Models\Category;
 use App\Repositories\Interfaces\ICategoryRepository;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 
 class CategoryRepository extends BaseRepository implements ICategoryRepository
@@ -32,6 +34,18 @@ class CategoryRepository extends BaseRepository implements ICategoryRepository
             return true;
         }
         return false;
+    }
+    
+    /**
+     * Get List of user's categories.
+     *
+     * @return Collection
+     */
+    public function getList(): Collection
+    {
+        /** @var User */
+        $user = Auth::user();
+        return $user->categories()->get();
     }
     
 }

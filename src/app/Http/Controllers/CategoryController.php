@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Category\CategoryStoreRequest;
+use App\Http\Requests\Category\CategoryUpdateRequest;
 use App\Models\Category;
 use App\Repositories\CategoryRepository;
 use App\Repositories\Interfaces\ICategoryRepository;
 use App\Responders\CategoryResponder;
 use App\Responders\IResponder;
+use App\Responders\Message;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
@@ -39,13 +40,14 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $response = $this->repository->getList();
+        return $this->responder->respondCollection($response);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  CategoryStoreRequest  $request
      * @return JsonResponse
      */
     public function store(CategoryStoreRequest $request): JsonResponse
@@ -57,38 +59,44 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Category  $category
      * @return JsonResponse
      */
-    public function show(Category $category):JsonResponse
+    public function show(Category $category): JsonResponse
     {
-        if($this->repository->checkOwn($category))
-        {
+        if ($this->repository->checkOwn($category)) {
             return $this->responder->respondResource($category);
         }
-        return $this->responder->message('You dont own this category',403);
+        return $this->responder->message(Message::ONLY_CATEGORY_OWNER, 403);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  CategoryUpdateRequest  $request
+     * @param  Category  $category
      * @return JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(CategoryUpdateRequest $request, Category $category): JsonResponse
     {
-        //
+        if ($this->repository->checkOwn($category)) {
+            $category->update($request->validated());
+            return $this->responder->respondResource($category);
+        }
+        return $this->responder->message(Message::ONLY_CATEGORY_OWNER, 403);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Category  $category
      * @return JsonResponse
      */
-    public function destroy($id)
+    public function destroy(Category $category): JsonResponse
     {
-        //
+        if ($this->repository->checkOwn($category)) {
+            $category->delete();
+        }
+        return $this->responder->message(Message::CATEGORY_DELETED, 200);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Category;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CategoryUpdateRequest extends FormRequest
 {
@@ -13,7 +14,7 @@ class CategoryUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,32 @@ class CategoryUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id' => 'required|integer|exists:users,id',
+            'name' => [
+                'required',
+                Rule::unique('categories')->where(function ($query) {
+                    return $query->where('name', '=', request()->name)
+                        ->where('user_id','=',request()->user_id);
+                })->ignore($this->category->id)
+            ]
+        ];
+    }
+
+    /**
+     * bodyParameters
+     *
+     * @return array
+     */
+    public function bodyParameters()
+    {
+        return [
+            'user_id' => [
+                'description' => 'The ID of owner user, No need to fill this field. This will extract automatically from token'
+            ],
+            'name' => [
+                'description' => 'The name of the Category.',
+                'example' => 'Category1'
+            ],
         ];
     }
 }

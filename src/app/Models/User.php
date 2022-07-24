@@ -84,7 +84,7 @@ class User extends Authenticatable
     }
 
     /**
-     * The user should has a currency
+     * The user should has a currency.
      *
      * @return void
      */
@@ -94,12 +94,22 @@ class User extends Authenticatable
     }
     
     /**
-     * The user has a list of wallets
+     * The user has a list of wallets.
      *
      * @return void
      */
     public function wallets()
     {
         return $this->hasMany(Wallet::class,'user_id');
+    }
+    
+    /**
+     * The user has a list of categories.
+     *
+     * @return void
+     */
+    public function categories()
+    {
+        return $this->hasMany(Category::class,'user_id');
     }
 }

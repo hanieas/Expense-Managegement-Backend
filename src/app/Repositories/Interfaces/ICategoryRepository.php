@@ -3,6 +3,7 @@
 namespace App\Repositories\Interfaces;
 
 use App\Models\Category;
+use Illuminate\Database\Eloquent\Collection;
 
 interface ICategoryRepository {
         
@@ -13,4 +14,11 @@ interface ICategoryRepository {
      * @return bool
      */
     public function checkOwn(Category $category):bool;
+    
+    /**
+     * Get list of categories of the current user.
+     *
+     * @return Collection
+     */
+    public function getList():Collection;
 }
