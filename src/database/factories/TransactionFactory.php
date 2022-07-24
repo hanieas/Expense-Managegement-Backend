@@ -20,14 +20,12 @@ class TransactionFactory extends Factory
      */
     public function definition()
     {
-        $randomDestinationWallet = $this->faker->boolean(); 
         $randomNote = $this->faker->boolean();
 
         return [
             'amount' => $this->faker->numberBetween(1,100000),
             'user_id' => User::inRandomOrder()->first(),
-            'source_wallet_id' => Wallet::inRandomOrder()->first(),
-            'destination_wallet_id' => $randomDestinationWallet ?  Wallet::inRandomOrder()->first() : null,
+            'wallet_id' => Wallet::inRandomOrder()->first(),
             'status' => $this->faker->randomElement([Transaction::INCOME_SIGN,Transaction::EXPENSE_SIGN]),
             'note' => $randomNote ? $this->faker->sentence() : null,
             'date' => $this->faker->date(),

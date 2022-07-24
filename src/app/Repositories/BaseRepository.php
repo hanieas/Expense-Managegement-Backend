@@ -11,7 +11,7 @@ class BaseRepository implements IBaseRepository
      * @var Model
      */
     protected $model;
-    
+
     /**
      * @param  Model $model
      * @return void
@@ -20,13 +20,23 @@ class BaseRepository implements IBaseRepository
     {
         $this->model = $model;
     }
-    
+
     /**
      * @param  array $attributes
      * @return Model
      */
-    public function create(array $attributes):Model
+    public function create(array $attributes): Model
     {
-        return $this->model->create($attributes);
+        $record =  $this->model->create($attributes);
+        return $this->model->find($record->id);
+    }
+    
+    /**
+     * @param  int $id
+     * @return Model
+     */
+    public function find(int $id): ?Model
+    {
+        return $this->model->find($id);
     }
 }

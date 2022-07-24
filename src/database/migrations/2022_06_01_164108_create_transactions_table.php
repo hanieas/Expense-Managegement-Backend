@@ -3,7 +3,6 @@
 use App\Models\Transaction;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -20,10 +19,8 @@ return new class extends Migration
             $table->bigInteger('amount');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('source_wallet_id');
-            $table->foreign('source_wallet_id')->references('id')->on('wallets');
-            $table->unsignedBigInteger('destination_wallet_id')->nullable();
-            $table->foreign('destination_wallet_id')->references('id')->on('wallets');
+            $table->unsignedBigInteger('wallet_id');
+            $table->foreign('wallet_id')->references('id')->on('wallets');
             $table->enum('status',[Transaction::INCOME_SIGN,Transaction::EXPENSE_SIGN]);
             $table->mediumText('note')->nullable();
             $table->dateTime('date')->useCurrent();

@@ -24,4 +24,5 @@ class Message
     const CATEGORY_NAME_IS_REQUIRED = "The name field is required.";
     const CATEGORY_NAME_SHOULD_BE_UNIQUE = "The name has already been taken.";
     const ONLY_CATEGORY_OWNER_CAN_GET_IT = "You dont own this category.";
+    const TRANSACTION_AMOUNT_ERROR = "Transaction amount is more than your wallet's inventory";
 }
