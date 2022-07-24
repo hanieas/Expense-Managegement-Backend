@@ -4,10 +4,9 @@ namespace Tests\Feature\Category;
 
 use App\Models\Category;
 use App\Models\User;
+use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Tests\Utilities\MiddlewareMessage;
-use Tests\Utilities\ValidationMessage;
 
 class CategoryCreateTest extends TestCase
 {
@@ -35,7 +34,7 @@ class CategoryCreateTest extends TestCase
     public function test_an_unautenticated_user_cant_create_category()
     {
         $response = $this->callRequest('post', $this->url, ['name' => $this->name]);
-        $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
+        $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 
     public function test_name_is_required()
@@ -44,7 +43,7 @@ class CategoryCreateTest extends TestCase
         $response = $this->callRequest('post',$this->url,[
             'Authorization' => 'Bearer ' . $token
         ]);
-        $response->assertJson(['message' => ValidationMessage::CATEGORY_NAME_IS_REQUIRED]);
+        $response->assertJson(['message' => Message::CATEGORY_NAME_IS_REQUIRED]);
     }
 
     public function test_a_user_cant_create_a_wallet_with_duplicated_name()
@@ -54,6 +53,6 @@ class CategoryCreateTest extends TestCase
             'Authorization' => 'Bearer ' . $token,
             'name' => $this->category->name,
         ]);
-        $response->assertJson(['message' => ValidationMessage::CATEGORY_NAME_SHOULD_BE_UNIQUE]);
+        $response->assertJson(['message' => Message::CATEGORY_NAME_SHOULD_BE_UNIQUE]);
     }
 }

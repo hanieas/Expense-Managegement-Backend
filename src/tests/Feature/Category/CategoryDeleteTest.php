@@ -7,8 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
-use Tests\Utilities\MiddlewareMessage;
-use Tests\Utilities\ValidationMessage;
+use App\Responders\Message;
 
 class CategoryDeleteTest extends TestCase
 {
@@ -36,7 +35,7 @@ class CategoryDeleteTest extends TestCase
     public function test_an_unautenticated_user_cant_delete_wallet()
     {
         $response = $this->callRequest($this->method, $this->url, []);
-        $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
+        $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 
     public function test_just_wallet_owner_can_delete_category()
@@ -45,7 +44,7 @@ class CategoryDeleteTest extends TestCase
         $response = $this->callRequest($this->method, $this->url, [
             'Authorization' => 'Bearer ' . $token
         ]);
-        $response->assertJson(['error' => ValidationMessage::ONLY_CATEGORY_OWNER_CAN_GET_IT])
+        $response->assertJson(['error' => Message::ONLY_CATEGORY_OWNER_CAN_GET_IT])
             ->assertStatus(403);
     }
 

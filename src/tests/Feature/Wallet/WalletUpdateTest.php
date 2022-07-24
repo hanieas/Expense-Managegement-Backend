@@ -8,8 +8,8 @@ use App\Models\Wallet;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
-use Tests\Utilities\MiddlewareMessage;
-use Tests\Utilities\ValidationMessage;
+use App\Responders\Message;
+
 
 class WalletUpdateTest extends TestCase
 {
@@ -41,7 +41,7 @@ class WalletUpdateTest extends TestCase
     public function test_an_unautenticated_user_cant_update_wallet()
     {
         $response = $this->callRequest('put', $this->url, []);
-        $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
+        $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 
     public function test_name_is_required()
@@ -54,7 +54,7 @@ class WalletUpdateTest extends TestCase
             'Authorization' => 'Bearer ' . $token,
             'inventory' => 10000,
         ]);
-        $response->assertJson(['message' => ValidationMessage::WALLET_NAME_IS_REQUIRED]);
+        $response->assertJson(['message' => Message::WALLET_NAME_IS_REQUIRED]);
     }
 
     public function test_inventory_is_required()
@@ -67,7 +67,7 @@ class WalletUpdateTest extends TestCase
             'Authorization' => 'Bearer ' . $token,
             'name' => $this->name,
         ]);
-        $response->assertJson(['message' => ValidationMessage::WALLET_INVENTORY_IS_REUQIRED]);
+        $response->assertJson(['message' => Message::WALLET_INVENTORY_IS_REUQIRED]);
     }
 
     public function test_inventory_should_be_integer()
@@ -81,7 +81,7 @@ class WalletUpdateTest extends TestCase
             'name' => $this->name,
             'inventory' => 'string'
         ]);
-        $response->assertJson(['message' => ValidationMessage::WALLET_INVENTORY_SHOULD_BE_INTEGER]);
+        $response->assertJson(['message' => Message::WALLET_INVENTORY_SHOULD_BE_INTEGER]);
     }
 
     public function test_just_wallet_owner_can_update_wallet()
@@ -92,7 +92,7 @@ class WalletUpdateTest extends TestCase
             'name'=> $this->name,
             'inventory'=> 0
         ]);
-        $response->assertJson(['error' => ValidationMessage::ONLY_WALLET_OWNER_CAN_GET_WALLET])
+        $response->assertJson(['error' => Message::ONLY_WALLET_OWNER_CAN_GET_WALLET])
             ->assertStatus(403);
     }
 
@@ -127,6 +127,6 @@ class WalletUpdateTest extends TestCase
             'name' => $wallet2->name,
             'inventory' => 10000
         ]);
-        $response->assertJson(['message' => ValidationMessage::WALLET_NAME_SHOULD_BE_UNIQUE]);
+        $response->assertJson(['message' => Message::WALLET_NAME_SHOULD_BE_UNIQUE]);
     }
 }

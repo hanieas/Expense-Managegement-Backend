@@ -8,7 +8,7 @@ use App\Models\Wallet;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
-use Tests\Utilities\MiddlewareMessage;
+use App\Responders\Message;
 
 class WalletListTest extends TestCase
 {
@@ -38,7 +38,7 @@ class WalletListTest extends TestCase
     public function test_an_unautenticated_user_cant_get_wallets_list()
     {
         $response = $this->callRequest('get', $this->url,);
-        $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
+        $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 
     public function test_a_signed_in_owner_user_can_get_list_of_wallets()

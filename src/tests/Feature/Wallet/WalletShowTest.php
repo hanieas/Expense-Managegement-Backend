@@ -8,8 +8,8 @@ use App\Models\Wallet;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
-use Tests\Utilities\MiddlewareMessage;
-use Tests\Utilities\ValidationMessage;
+use App\Responders\Message;
+
 
 class WalletShowTest extends TestCase
 {
@@ -44,7 +44,7 @@ class WalletShowTest extends TestCase
     public function test_an_unautenticated_user_cant_show_wallet()
     {
         $response = $this->callRequest('get', $this->url,);
-        $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
+        $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 
     public function test_just_wallet_owner_can_show_wallet()
@@ -57,7 +57,7 @@ class WalletShowTest extends TestCase
                 'Authorization' => 'Bearer ' . $token
             ]
         );
-        $response->assertJson(['error' => ValidationMessage::ONLY_WALLET_OWNER_CAN_GET_WALLET])
+        $response->assertJson(['error' => Message::ONLY_WALLET_OWNER_CAN_GET_WALLET])
             ->assertStatus(403);
     }
 

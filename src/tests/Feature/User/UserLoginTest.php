@@ -1,15 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\User;
 
 use App\Models\Currency;
 use App\Models\User;
+use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Artisan;
-use Laravel\Passport\Passport;
 use Tests\TestCase;
-use Tests\Utilities\MiddlewareMessage;
-use Tests\Utilities\ValidationMessage;
 
 class UserLoginTest extends TestCase
 {
@@ -30,8 +28,7 @@ class UserLoginTest extends TestCase
 
         $this->email = 'user@gmail.com';
         $this->password = 'password';
-        $this->currency = Currency::factory()->create();
-        $this->user = User::factory()->create();
+        $this->user = $this->createUser(1)[0];
         $this->url = $this->user->login_path;
     }
 
@@ -39,7 +36,7 @@ class UserLoginTest extends TestCase
     {
         $token = $this->generateToken($this->user);
         $response = $this->callRequest('post', $this->url, ['Authorization' => 'Bearer ' . $token]);
-        $response->assertJson(['message' => MiddlewareMessage::GUEST]);
+        $response->assertJson(['message' => Message::ONLY_GUEST_USER]);
     }
 
     public function test_a_user_can_login()
@@ -75,7 +72,7 @@ class UserLoginTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'email' => [
-                    ValidationMessage::EMAIL_IS_REQUIRED
+                    Message::EMAIL_IS_REQUIRED
                 ]
             ]
         ])->assertStatus(422);
@@ -90,7 +87,7 @@ class UserLoginTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'password' => [
-                    ValidationMessage::PASSWORD_IS_REQUIRED
+                    Message::PASSWORD_IS_REQUIRED
                 ]
             ]
         ])->assertStatus(422);

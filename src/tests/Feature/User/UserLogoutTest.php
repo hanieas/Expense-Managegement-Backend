@@ -1,14 +1,12 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\User;
 
 use App\Models\Currency;
 use App\Models\User;
+use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Artisan;
-use Laravel\Passport\Passport;
 use Tests\TestCase;
-use Tests\Utilities\MiddlewareMessage;
 
 class UserLogoutTest extends TestCase
 {
@@ -42,6 +40,6 @@ class UserLogoutTest extends TestCase
     public function test_a_not_signed_in_user_cant_logout()
     {
         $response = $this->callRequest('post', $this->url);
-        $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
+        $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 }

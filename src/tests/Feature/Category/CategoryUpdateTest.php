@@ -7,8 +7,8 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
-use Tests\Utilities\MiddlewareMessage;
-use Tests\Utilities\ValidationMessage;
+use App\Responders\Message;
+
 
 class CategoryUpdateTest extends TestCase
 {
@@ -37,7 +37,7 @@ class CategoryUpdateTest extends TestCase
     public function test_an_unautenticated_user_cant_update_category()
     {
         $response = $this->callRequest($this->method, $this->url, []);
-        $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
+        $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 
     public function test_name_is_required()
@@ -49,7 +49,7 @@ class CategoryUpdateTest extends TestCase
         $response = $this->callRequest($this->method, $this->url, [
             'Authorization' => 'Bearer ' . $token,
         ]);
-        $response->assertJson(['message' => ValidationMessage::CATEGORY_NAME_IS_REQUIRED]);
+        $response->assertJson(['message' => Message::CATEGORY_NAME_IS_REQUIRED]);
     }
 
     public function test_just_wallet_owner_can_update_category()
@@ -59,7 +59,7 @@ class CategoryUpdateTest extends TestCase
             'Authorization' => 'Bearer ' . $token,
             'name' => $this->name,
         ]);
-        $response->assertJson(['error' => ValidationMessage::ONLY_CATEGORY_OWNER_CAN_GET_IT])
+        $response->assertJson(['error' => Message::ONLY_CATEGORY_OWNER_CAN_GET_IT])
             ->assertStatus(403);
     }
 
@@ -91,6 +91,6 @@ class CategoryUpdateTest extends TestCase
             'Authorization' => 'Bearer ' . $token,
             'name' => $category2->name,
         ]);
-        $response->assertJson(['message' => ValidationMessage::CATEGORY_NAME_SHOULD_BE_UNIQUE]);
+        $response->assertJson(['message' => Message::CATEGORY_NAME_SHOULD_BE_UNIQUE]);
     }
 }

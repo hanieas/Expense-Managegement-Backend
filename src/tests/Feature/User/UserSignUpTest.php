@@ -1,15 +1,13 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\User;
 
 use App\Models\Currency;
 use App\Models\User;
+use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Artisan;
-use Laravel\Passport\Passport;
 use Tests\TestCase;
-use Tests\Utilities\MiddlewareMessage;
-use Tests\Utilities\ValidationMessage;
 
 class UserSignUpTest extends TestCase
 {
@@ -46,7 +44,7 @@ class UserSignUpTest extends TestCase
     {
         $token = $this->generateToken($this->user);
         $response = $this->callRequest('post', $this->url, ['Authorization' => 'Bearer ' . $token]);
-        $response->assertJson(['message' => MiddlewareMessage::GUEST]);
+        $response->assertJson(['message' => Message::ONLY_GUEST_USER]);
     }
 
     public function test_a_user_can_signup()
@@ -76,7 +74,7 @@ class UserSignUpTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'email' => [
-                    ValidationMessage::EMAIL_IS_REQUIRED
+                    Message::EMAIL_IS_REQUIRED
                 ]
             ]
         ])->assertStatus(422);
@@ -94,7 +92,7 @@ class UserSignUpTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'email' => [
-                    ValidationMessage::EMAIL_IS_UNIQUE
+                    Message::EMAIL_IS_UNIQUE
                 ]
             ]
         ])->assertStatus(422);
@@ -113,7 +111,7 @@ class UserSignUpTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'email' => [
-                    ValidationMessage::EMAIL_HAS_FORMAT
+                    Message::EMAIL_HAS_FORMAT
                 ]
             ]
         ])->assertStatus(422);
@@ -130,7 +128,7 @@ class UserSignUpTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'password' => [
-                    ValidationMessage::PASSWORD_IS_REQUIRED
+                    Message::PASSWORD_IS_REQUIRED
                 ]
             ]
         ])->assertStatus(422);
@@ -148,7 +146,7 @@ class UserSignUpTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'password' => [
-                    ValidationMessage::PASSWORD_SHOULD_BE_LEAST_6_CHAR
+                    Message::PASSWORD_SHOULD_BE_LEAST_6_CHAR
                 ]
             ]
         ])->assertStatus(422);
@@ -165,7 +163,7 @@ class UserSignUpTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'currency_id' => [
-                    ValidationMessage::CURRENCY_ID_IS_REQUIRED
+                    Message::CURRENCY_ID_IS_REQUIRED
                 ]
             ]
         ])->assertStatus(422);
@@ -183,7 +181,7 @@ class UserSignUpTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'currency_id' => [
-                    ValidationMessage::CURRENCY_ID_SHOULD_EXIST_IN_TABLE
+                    Message::CURRENCY_ID_SHOULD_EXIST_IN_TABLE
                 ]
             ]
         ])->assertStatus(422);
@@ -201,7 +199,7 @@ class UserSignUpTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'currency_id' => [
-                    ValidationMessage::CURRENY_ID_SHOULD_BE_INTEGER
+                    Message::CURRENY_ID_SHOULD_BE_INTEGER
                 ]
             ]
         ])->assertStatus(422);
@@ -218,7 +216,7 @@ class UserSignUpTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'username' => [
-                    ValidationMessage::USERNAME_IS_REQUIRED
+                    Message::USERNAME_IS_REQUIRED
                 ]
             ]
         ])->assertStatus(422);
@@ -236,7 +234,7 @@ class UserSignUpTest extends TestCase
         $response->assertJson([
             'errors' => [
                 'username' => [
-                    ValidationMessage::USERNAME_SHOULD_BE_LEAST_6_CHAR
+                    Message::USERNAME_SHOULD_BE_LEAST_6_CHAR
                 ]
             ]
         ])->assertStatus(422);

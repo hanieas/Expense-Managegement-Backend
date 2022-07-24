@@ -5,8 +5,8 @@ namespace Tests\Feature\Category;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
-use Tests\Utilities\MiddlewareMessage;
-use Tests\Utilities\ValidationMessage;
+use App\Responders\Message;
+
 
 class CategoryShowTest extends TestCase
 {
@@ -24,7 +24,7 @@ class CategoryShowTest extends TestCase
     public function test_an_unautenticated_user_cant_show_category()
     {
         $response = $this->callRequest('get', $this->url,);
-        $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
+        $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 
     public function test_just_wallet_owner_can_show_category()
@@ -37,7 +37,7 @@ class CategoryShowTest extends TestCase
                 'Authorization' => 'Bearer ' . $token
             ]
         );
-        $response->assertJson(['error' => ValidationMessage::ONLY_CATEGORY_OWNER_CAN_GET_IT])
+        $response->assertJson(['error' => Message::ONLY_CATEGORY_OWNER_CAN_GET_IT])
             ->assertStatus(403);
     }
 

@@ -7,8 +7,8 @@ use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Tests\Utilities\MiddlewareMessage;
-use Tests\Utilities\ValidationMessage;
+use App\Responders\Message;
+
 
 class WalletCreateTest extends TestCase
 {
@@ -46,7 +46,7 @@ class WalletCreateTest extends TestCase
     public function test_an_unautenticated_user_cant_create_wallet()
     {
         $response = $this->callRequest('post', $this->url, ['name' => $this->name]);
-        $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
+        $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 
     public function test_name_is_required()
@@ -55,7 +55,7 @@ class WalletCreateTest extends TestCase
         $response = $this->callRequest('post',$this->url,[
             'Authorization' => 'Bearer ' . $token
         ]);
-        $response->assertJson(['message' => ValidationMessage::WALLET_NAME_IS_REQUIRED]);
+        $response->assertJson(['message' => Message::WALLET_NAME_IS_REQUIRED]);
     }
 
     public function test_inventory_should_be_integer()
@@ -66,7 +66,7 @@ class WalletCreateTest extends TestCase
             'name' => $this->new_name,
             'inventory' => $this->incorrect_inventory
         ]);
-        $response->assertJson(['message' => ValidationMessage::WALLET_INVENTORY_SHOULD_BE_INTEGER]);
+        $response->assertJson(['message' => Message::WALLET_INVENTORY_SHOULD_BE_INTEGER]);
     }
 
     public function test_a_user_cant_create_a_wallet_with_duplicated_name()
@@ -76,6 +76,6 @@ class WalletCreateTest extends TestCase
             'Authorization' => 'Bearer ' . $token,
             'name' => $this->name,
         ]);
-        $response->assertJson(['message' => ValidationMessage::WALLET_NAME_SHOULD_BE_UNIQUE]);
+        $response->assertJson(['message' => Message::WALLET_NAME_SHOULD_BE_UNIQUE]);
     }
 }
