@@ -35,12 +35,12 @@ class WalletUpdateTest extends TestCase
         $this->user = User::factory()->create();
         $this->name = 'Wallet';
         $this->wallet = Wallet::factory()->create(['user_id' => $this->user->id]);
-        $this->url = $this->wallet->path;
+        $this->url = $this->wallet->path. '/' . $this->wallet->id;
     }
 
     public function test_an_unautenticated_user_cant_update_wallet()
     {
-        $response = $this->callRequest('put', $this->url . '/' . $this->wallet->id, []);
+        $response = $this->callRequest('put', $this->url, []);
         $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
     }
 
@@ -50,7 +50,7 @@ class WalletUpdateTest extends TestCase
         Gate::define('check-wallet-own', function () {
             return true;
         });
-        $response = $this->callRequest('put', $this->url . '/' . $this->wallet->id, [
+        $response = $this->callRequest('put', $this->url, [
             'Authorization' => 'Bearer ' . $token,
             'inventory' => 10000,
         ]);
@@ -63,7 +63,7 @@ class WalletUpdateTest extends TestCase
         Gate::define('check-wallet-own', function () {
             return true;
         });
-        $response = $this->callRequest('put', $this->url . '/' . $this->wallet->id, [
+        $response = $this->callRequest('put', $this->url, [
             'Authorization' => 'Bearer ' . $token,
             'name' => $this->name,
         ]);
@@ -76,7 +76,7 @@ class WalletUpdateTest extends TestCase
         Gate::define('check-wallet-own', function () {
             return true;
         });
-        $response = $this->callRequest('put', $this->url . '/' . $this->wallet->id, [
+        $response = $this->callRequest('put', $this->url, [
             'Authorization' => 'Bearer ' . $token,
             'name' => $this->name,
             'inventory' => 'string'
@@ -87,7 +87,7 @@ class WalletUpdateTest extends TestCase
     public function test_just_wallet_owner_can_update_wallet()
     {
         $token = $this->generateToken(User::factory()->create());
-        $response = $this->callRequest('put', $this->url . '/' . $this->wallet->id, [
+        $response = $this->callRequest('put', $this->url, [
             'Authorization' => 'Bearer ' . $token,
             'name'=> $this->name,
             'inventory'=> 0
@@ -102,7 +102,7 @@ class WalletUpdateTest extends TestCase
         Gate::define('check-wallet-own', function () {
             return true;
         });
-        $response = $this->callRequest('put', $this->url . '/' . $this->wallet->id, [
+        $response = $this->callRequest('put', $this->url, [
             'Authorization' => 'Bearer ' . $token,
             'name' => 'Updated Name',
             'inventory' => 10000,
@@ -122,9 +122,10 @@ class WalletUpdateTest extends TestCase
             'user_id' => $this->user->id,
             'name' => 'Wallet2'
         ]);
-        $response = $this->callRequest('post', $this->url,[
+        $response = $this->callRequest('put', $this->url,[
             'Authorization' => 'Bearer ' . $token,
             'name' => $wallet2->name,
+            'inventory' => 10000
         ]);
         $response->assertJson(['message' => ValidationMessage::WALLET_NAME_SHOULD_BE_UNIQUE]);
     }

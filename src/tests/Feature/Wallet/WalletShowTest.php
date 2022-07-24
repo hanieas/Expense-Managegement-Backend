@@ -38,7 +38,7 @@ class WalletShowTest extends TestCase
             'user_id' => $this->user->id,
             'name' => $this->name
         ]);
-        $this->url = $this->wallet->path;
+        $this->url = $this->wallet->path.'/'.$this->wallet->id;
     }
 
     public function test_an_unautenticated_user_cant_show_wallet()
@@ -52,7 +52,7 @@ class WalletShowTest extends TestCase
         $token = $this->generateToken(User::factory()->create());
         $response = $this->callRequest(
             'get',
-            $this->url . '/' . $this->wallet->id,
+            $this->url,
             [
                 'Authorization' => 'Bearer ' . $token
             ]
@@ -69,7 +69,7 @@ class WalletShowTest extends TestCase
         });
         $response = $this->callRequest(
             'get',
-            $this->url . '/' . $this->wallet->id,
+            $this->url,
             [
                 'Authorization' => 'Bearer ' . $token
             ]

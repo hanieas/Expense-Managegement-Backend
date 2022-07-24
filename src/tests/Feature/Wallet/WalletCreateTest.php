@@ -6,8 +6,6 @@ use App\Models\Currency;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Artisan;
-use Laravel\Passport\Passport;
 use Tests\TestCase;
 use Tests\Utilities\MiddlewareMessage;
 use Tests\Utilities\ValidationMessage;

@@ -35,7 +35,7 @@ class WalletListTest extends TestCase
         $this->url = $this->wallets[0]->path;
     }
 
-    public function test_an_unautenticated_user_cant_show_wallet()
+    public function test_an_unautenticated_user_cant_get_wallets_list()
     {
         $response = $this->callRequest('get', $this->url,);
         $response->assertJson(['message' => MiddlewareMessage::AUTHENTICATED]);
