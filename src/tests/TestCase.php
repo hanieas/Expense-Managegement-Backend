@@ -2,6 +2,8 @@
 
 namespace Tests;
 
+use App\Models\Category;
+use App\Models\Currency;
 use App\Models\User;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Artisan;
@@ -34,5 +36,21 @@ abstract class TestCase extends BaseTestCase
         $user = Passport::actingAs($user);
         $token = $user->createToken('Api token')->accessToken;
         return $token;
+    }
+
+    protected function createCurrency($count=1)
+    {
+        return Currency::factory($count)->create();
+    }
+
+    protected function createUser($count)
+    {
+        $currency = Currency::factory()->create();
+        return User::factory($count)->create(['currency_id' => $currency->id]);
+    }
+
+    protected function createCategory($count,$attributes)
+    {
+        return Category::factory($count)->create($attributes);
     }
 }

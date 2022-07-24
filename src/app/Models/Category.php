@@ -18,6 +18,16 @@ class Category extends Model
     ];
     
     /**
+     * getPathAttribute
+     *
+     * @return string
+     */
+    public function getPathAttribute(): string
+    {
+        return env('PREFIX_URL').'/categories';
+    }
+    
+    /**
      * Get the user that category belongs to.
      *
      * @return void

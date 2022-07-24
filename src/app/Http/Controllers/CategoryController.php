@@ -67,7 +67,7 @@ class CategoryController extends Controller
         if ($this->repository->checkOwn($category)) {
             return $this->responder->respondResource($category);
         }
-        return $this->responder->message(Message::ONLY_CATEGORY_OWNER, 403);
+        return $this->responder->failed(Message::ONLY_CATEGORY_OWNER, 403);
     }
 
     /**
@@ -83,7 +83,7 @@ class CategoryController extends Controller
             $category->update($request->validated());
             return $this->responder->respondResource($category);
         }
-        return $this->responder->message(Message::ONLY_CATEGORY_OWNER, 403);
+        return $this->responder->failed(Message::ONLY_CATEGORY_OWNER, 403);
     }
 
     /**
@@ -96,7 +96,8 @@ class CategoryController extends Controller
     {
         if ($this->repository->checkOwn($category)) {
             $category->delete();
+            return $this->responder->message(Message::CATEGORY_DELETED,200);
         }
-        return $this->responder->message(Message::CATEGORY_DELETED, 200);
+        return $this->responder->failed(Message::ONLY_CATEGORY_OWNER, 403);
     }
 }
