@@ -2,14 +2,13 @@
 
 namespace Tests\Feature\Wallet;
 
-use App\Models\Currency;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
 use App\Responders\Message;
-
+use Laravel\Passport\Passport;
 
 class WalletShowTest extends TestCase
 {
@@ -17,9 +16,6 @@ class WalletShowTest extends TestCase
 
     /** @var User */
     protected User $user;
-
-    /** @var Currency */
-    protected Currency $currency;
 
     /** @var Wallet */
     protected Wallet $wallet;
@@ -31,14 +27,13 @@ class WalletShowTest extends TestCase
     {
         parent::setUp();
 
-        $this->currency = Currency::factory()->create();
-        $this->user = User::factory()->create();
+        $this->user = $this->createUser(1)[0];
         $this->name = 'Wallet';
         $this->wallet = Wallet::factory()->create([
             'user_id' => $this->user->id,
             'name' => $this->name
         ]);
-        $this->url = $this->wallet->path.'/'.$this->wallet->id;
+        $this->url = $this->wallet->path . '/' . $this->wallet->id;
     }
 
     public function test_an_unautenticated_user_cant_show_wallet()
@@ -49,13 +44,10 @@ class WalletShowTest extends TestCase
 
     public function test_just_wallet_owner_can_show_wallet()
     {
-        $token = $this->generateToken(User::factory()->create());
+        Passport::actingAs($this->user);
         $response = $this->callRequest(
             'get',
-            $this->url,
-            [
-                'Authorization' => 'Bearer ' . $token
-            ]
+            $this->url
         );
         $response->assertJson(['error' => Message::ONLY_WALLET_OWNER_CAN_GET_WALLET])
             ->assertStatus(403);
@@ -63,16 +55,13 @@ class WalletShowTest extends TestCase
 
     public function test_a_signed_in_owner_user_can_get_wallet()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         Gate::define('check-wallet-own', function () {
             return true;
         });
         $response = $this->callRequest(
             'get',
-            $this->url,
-            [
-                'Authorization' => 'Bearer ' . $token
-            ]
+            $this->url
         );
         $response->assertStatus(200)
             ->assertJsonPath('data.name', $this->wallet->name)

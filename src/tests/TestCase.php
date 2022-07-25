@@ -27,27 +27,17 @@ abstract class TestCase extends BaseTestCase
         return $response;
     }
 
-    /**
-     * @param  User $user
-     * @return string
-     */
-    protected function generateToken(User $user): string
-    {
-        Artisan::call('passport:install');
-        /** @var User */
-        $user = Passport::actingAs($user);
-        $token = $user->createToken('Api token')->accessToken;
-        return $token;
-    }
 
     protected function createCurrency($count = 1)
     {
         return Currency::factory($count)->create();
     }
 
-    protected function createUser($count)
+    protected function createUser($count, $attributes = [])
     {
-        $currency = Currency::factory()->create();
+        if (!in_array('currency_id', $attributes)) {
+            $currency = Currency::factory()->create();
+        }
         return User::factory($count)->create(['currency_id' => $currency->id]);
     }
 

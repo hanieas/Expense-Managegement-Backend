@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
 use App\Responders\Message;
-
+use Laravel\Passport\Passport;
 
 class CategoryUpdateTest extends TestCase
 {
@@ -42,21 +42,18 @@ class CategoryUpdateTest extends TestCase
 
     public function test_name_is_required()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         Gate::define('check-category-own', function () {
             return true;
         });
-        $response = $this->callRequest($this->method, $this->url, [
-            'Authorization' => 'Bearer ' . $token,
-        ]);
+        $response = $this->callRequest($this->method, $this->url);
         $response->assertJson(['message' => Message::CATEGORY_NAME_IS_REQUIRED]);
     }
 
     public function test_just_wallet_owner_can_update_category()
     {
-        $token = $this->generateToken($this->createUser(1)[0]);
+        Passport::actingAs($this->createUser(1)[0]);
         $response = $this->callRequest($this->method, $this->url, [
-            'Authorization' => 'Bearer ' . $token,
             'name' => $this->name,
         ]);
         $response->assertJson(['error' => Message::ONLY_CATEGORY_OWNER_CAN_GET_IT])
@@ -65,12 +62,11 @@ class CategoryUpdateTest extends TestCase
 
     public function test_a_signed_in_owner_user_can_update_category()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         Gate::define('check-category-own', function () {
             return true;
         });
         $response = $this->callRequest($this->method, $this->url, [
-            'Authorization' => 'Bearer ' . $token,
             'name' => $this->name,
         ]);
         $response->assertStatus(200);
@@ -82,13 +78,12 @@ class CategoryUpdateTest extends TestCase
 
     public function test_a_user_cant_update_a_wallet_with_duplicated_name()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         $category2 = $this->createCategory(1, [
             'user_id' => $this->user->id,
             'name' => $this->name
         ])[0];
         $response = $this->callRequest($this->method, $this->url, [
-            'Authorization' => 'Bearer ' . $token,
             'name' => $category2->name,
         ]);
         $response->assertJson(['message' => Message::CATEGORY_NAME_SHOULD_BE_UNIQUE]);

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\User;
 use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class CategoryCreateTest extends TestCase
@@ -37,20 +38,17 @@ class CategoryCreateTest extends TestCase
         $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 
-    public function test_name_is_required()
+    public function test_required_fields()
     {
-        $token = $this->generateToken($this->user);
-        $response = $this->callRequest('post',$this->url,[
-            'Authorization' => 'Bearer ' . $token
-        ]);
-        $response->assertJson(['message' => Message::CATEGORY_NAME_IS_REQUIRED]);
+        Passport::actingAs($this->user);
+        $response = $this->callRequest('post',$this->url);
+        $response->assertInvalid(['name' => Message::CATEGORY_NAME_IS_REQUIRED]);
     }
 
     public function test_a_user_cant_create_a_wallet_with_duplicated_name()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         $response = $this->callRequest('post', $this->url,[
-            'Authorization' => 'Bearer ' . $token,
             'name' => $this->category->name,
         ]);
         $response->assertJson(['message' => Message::CATEGORY_NAME_SHOULD_BE_UNIQUE]);

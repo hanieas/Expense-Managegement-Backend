@@ -6,7 +6,6 @@ use App\Models\Transaction;
 use App\Models\Wallet;
 use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
@@ -19,7 +18,6 @@ class TransactionUpdateTest extends TestCase
     {
         parent::setUp();
 
-        Artisan::call('passport:install');
         $this->user = $this->createUser(1)[0];
         $this->wallet = $this->createWallet(1, ['user_id' => $this->user->id, 'inventory' => 200])[0];
         $this->category = $this->createCategory(1)[0];
@@ -50,7 +48,6 @@ class TransactionUpdateTest extends TestCase
 
     public function test_amount_should_be_integer()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => 'string',
@@ -63,7 +60,6 @@ class TransactionUpdateTest extends TestCase
 
     public function test_wallet_id_should_be_integer()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => $this->amount,
@@ -76,7 +72,6 @@ class TransactionUpdateTest extends TestCase
 
     public function test_wallet_id_should_exist()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => $this->amount,
@@ -89,7 +84,6 @@ class TransactionUpdateTest extends TestCase
 
     public function test_category_id_should_be_integer()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => $this->amount,
@@ -102,7 +96,6 @@ class TransactionUpdateTest extends TestCase
 
     public function test_category_id_should_exist()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => $this->amount,
@@ -115,7 +108,6 @@ class TransactionUpdateTest extends TestCase
 
     public function test_status_should_be_valid()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => $this->amount,
@@ -128,7 +120,6 @@ class TransactionUpdateTest extends TestCase
 
     public function test_wallet_inventory_should_be_updated_with_changing_amount()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         Gate::define('check-transaction-own', function () {
             return true;
@@ -148,7 +139,6 @@ class TransactionUpdateTest extends TestCase
 
     public function test_wallet_inventory_should_be_updated_with_changing_status()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         Gate::define('check-transaction-own', function () {
             return true;

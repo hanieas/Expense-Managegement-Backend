@@ -7,7 +7,6 @@ use App\Models\Wallet;
 use App\Responders\Message;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
@@ -28,7 +27,6 @@ class TransactionListTest extends TestCase
     {
         parent::setUp();
 
-        Artisan::call('passport:install');
         $this->user = $this->createUser(1)[0];
         $this->wallet = $this->createWallet(1, ['user_id' => $this->user->id])[0];
         $this->transactions = $this->createTransaction(10, [

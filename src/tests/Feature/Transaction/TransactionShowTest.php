@@ -3,10 +3,8 @@
 namespace Tests\Feature\Transaction;
 
 use App\Models\Transaction;
-use App\Models\User;
 use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
@@ -25,7 +23,6 @@ class TransactionShowTest extends TestCase
     {
         parent::setUp();
 
-        Artisan::call('passport:install');
         $this->user = $this->createUser(1)[0];
         $this->transaction = $this->createTransaction(1)[0];
         $this->url = $this->transaction->path . '/' . $this->transaction->id;
@@ -41,7 +38,6 @@ class TransactionShowTest extends TestCase
     public function test_just_wallet_owner_can_show_transaction()
     {
         $user = $this->createUser(1)[0];
-        /** @var User */
         Passport::actingAs($user);
         $response = $this->callRequest(
             $this->method,
@@ -53,7 +49,6 @@ class TransactionShowTest extends TestCase
 
     public function test_a_signed_in_owner_user_can_get_transaction()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         Gate::define('check-transaction-own', function () {
             return true;

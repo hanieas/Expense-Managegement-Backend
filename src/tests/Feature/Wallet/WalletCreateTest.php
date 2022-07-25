@@ -2,13 +2,12 @@
 
 namespace Tests\Feature\Wallet;
 
-use App\Models\Currency;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use App\Responders\Message;
-
+use Laravel\Passport\Passport;
 
 class WalletCreateTest extends TestCase
 {
@@ -16,9 +15,6 @@ class WalletCreateTest extends TestCase
 
     /** @var User */
     protected User $user;
-
-    /** @var Currency */
-    protected Currency $currency;
 
     /** @var Wallet */
     protected Wallet $wallet;
@@ -30,13 +26,12 @@ class WalletCreateTest extends TestCase
     {
         parent::setUp();
 
-        $this->currency = Currency::factory()->create();
-        $this->user = User::factory()->create();
+        $this->user = $this->createUser(1)[0];
         $this->name = 'Wallet1';
-        $this->wallet = Wallet::factory()->create([
+        $this->wallet = $this->createWallet(1, [
             'user_id' => $this->user->id,
             'name' => $this->name
-        ]);
+        ])[0];
         $this->url = $this->wallet->path;
         $this->correct_inventory = 10000;
         $this->incorrect_inventory = 'string';
@@ -45,24 +40,23 @@ class WalletCreateTest extends TestCase
 
     public function test_an_unautenticated_user_cant_create_wallet()
     {
-        $response = $this->callRequest('post', $this->url, ['name' => $this->name]);
+        $response = $this->callRequest('post', $this->url);
         $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 
-    public function test_name_is_required()
+    public function test_required_fields()
     {
-        $token = $this->generateToken($this->user);
-        $response = $this->callRequest('post',$this->url,[
-            'Authorization' => 'Bearer ' . $token
+        Passport::actingAs($this->user);
+        $response = $this->callRequest('post', $this->url);
+        $response->assertInvalid([
+            'name' => Message::WALLET_NAME_IS_REQUIRED
         ]);
-        $response->assertJson(['message' => Message::WALLET_NAME_IS_REQUIRED]);
     }
 
     public function test_inventory_should_be_integer()
     {
-        $token = $this->generateToken($this->user);
-        $response = $this->callRequest('post',$this->url,[
-            'Authorization' => 'Bearer ' . $token,
+        Passport::actingAs($this->user);
+        $response = $this->callRequest('post', $this->url, [
             'name' => $this->new_name,
             'inventory' => $this->incorrect_inventory
         ]);
@@ -71,9 +65,8 @@ class WalletCreateTest extends TestCase
 
     public function test_a_user_cant_create_a_wallet_with_duplicated_name()
     {
-        $token = $this->generateToken($this->user);
-        $response = $this->callRequest('post', $this->url,[
-            'Authorization' => 'Bearer ' . $token,
+        Passport::actingAs($this->user);
+        $response = $this->callRequest('post', $this->url, [
             'name' => $this->name,
         ]);
         $response->assertJson(['message' => Message::WALLET_NAME_SHOULD_BE_UNIQUE]);

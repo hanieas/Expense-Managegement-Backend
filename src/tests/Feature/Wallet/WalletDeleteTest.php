@@ -2,7 +2,6 @@
 
 namespace Tests\Feature\Wallet;
 
-use App\Models\Currency;
 use App\Models\User;
 use App\Models\Wallet;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -10,6 +9,7 @@ use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
 use App\Responders\Message;
 use Illuminate\Database\Eloquent\Collection;
+use Laravel\Passport\Passport;
 
 class WalletDeleteTest extends TestCase
 {
@@ -46,10 +46,8 @@ class WalletDeleteTest extends TestCase
 
     public function test_just_wallet_owner_can_delete_wallet()
     {
-        $token = $this->generateToken(User::factory()->create());
-        $response = $this->callRequest('delete', $this->url, [
-            'Authorization' => 'Bearer ' . $token
-        ]);
+        Passport::actingAs($this->user);
+        $response = $this->callRequest('delete', $this->url);
         $response->assertJson(['error' => Message::ONLY_WALLET_OWNER_CAN_GET_WALLET])
             ->assertStatus(403);
     }
@@ -57,13 +55,11 @@ class WalletDeleteTest extends TestCase
     public function test_a_signed_in_owner_user_can_delete_wallet()
     {
 
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         Gate::define('check-wallet-own', function () {
             return true;
         });
-        $response = $this->callRequest('delete', $this->url, [
-            'Authorization' => 'Bearer ' . $token
-        ]);
+        $response = $this->callRequest('delete', $this->url);
         $response->assertStatus(200);
         $this->assertDatabaseCount('transactions',0);
         $this->assertSoftDeleted('wallets',[

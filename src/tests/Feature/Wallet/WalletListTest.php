@@ -9,6 +9,8 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 use App\Responders\Message;
+use Laravel\Passport\Passport;
+use Mockery\Generator\StringManipulation\Pass\Pass;
 
 class WalletListTest extends TestCase
 {
@@ -21,14 +23,13 @@ class WalletListTest extends TestCase
     protected Currency $currency;
 
     /** @var string */
-    protected string $url, $name, $correct_inventory, $incorrect_inventory, $new_name;
+    protected string $url, $name;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->currency = Currency::factory()->create();
-        $this->user = User::factory()->create();
+        $this->user = $this->createUser(1)[0];
         $this->wallets = Wallet::factory(5)->create([
             'user_id' => $this->user->id,
         ]);
@@ -43,13 +44,10 @@ class WalletListTest extends TestCase
 
     public function test_a_signed_in_owner_user_can_get_list_of_wallets()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         $response = $this->callRequest(
             'get',
             $this->url,
-            [
-                'Authorization' => 'Bearer ' . $token
-            ]
         );
         $response->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) =>

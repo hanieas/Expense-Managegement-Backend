@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Artisan;
+use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class UserLoginTest extends TestCase
@@ -34,15 +35,14 @@ class UserLoginTest extends TestCase
 
     public function test_a_singed_in_user_cant_login()
     {
-        $token = $this->generateToken($this->user);
-        $response = $this->callRequest('post', $this->url, ['Authorization' => 'Bearer ' . $token]);
+        Passport::actingAs($this->user);
+        $response = $this->callRequest('post', $this->url);
         $response->assertJson(['message' => Message::ONLY_GUEST_USER]);
     }
 
     public function test_a_user_can_login()
     {
         Artisan::call('passport:install');
-
         $attributes  = [
             'email' => $this->user->email,
             'password' => $this->password,
@@ -59,37 +59,17 @@ class UserLoginTest extends TestCase
             'password' => $this->password,
         ];
 
-        $response = $this->callRequest('post', $this->url, $attributes,);
+        $response = $this->callRequest('post', $this->url, $attributes);
         $response->assertStatus(422);
     }
 
-    public function test_email_is_required_for_login()
+    public function test_required_fields()
     {
-        $response = $this->callRequest('post', $this->url, [
-            'password' => $this->password,
-        ]);
+        $response = $this->callRequest('post', $this->url);
 
-        $response->assertJson([
-            'errors' => [
-                'email' => [
-                    Message::EMAIL_IS_REQUIRED
-                ]
-            ]
-        ])->assertStatus(422);
-    }
-
-    public function test_password_is_required_for_login()
-    {
-        $response = $this->callRequest('post', $this->url, [
-            'email' => $this->email,
-        ]);
-
-        $response->assertJson([
-            'errors' => [
-                'password' => [
-                    Message::PASSWORD_IS_REQUIRED
-                ]
-            ]
+        $response->assertInvalid([
+            'email' => Message::EMAIL_IS_REQUIRED,
+            'password' => Message::PASSWORD_IS_REQUIRED
         ])->assertStatus(422);
     }
 }

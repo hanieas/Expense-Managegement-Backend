@@ -8,7 +8,6 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Artisan;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
 
@@ -18,8 +17,6 @@ class TransactionCreateTest extends TestCase
 
     /** @var Category */
     protected Category $category;
-
-    /** @var User */
     protected User $user;
 
     /** @var Wallet */
@@ -38,7 +35,6 @@ class TransactionCreateTest extends TestCase
     {
         parent::setUp();
 
-        Artisan::call('passport:install');
         $this->user = $this->createUser(1)[0];
         $this->wallet = $this->createWallet(1,['inventory' => 200])[0];
         $this->category = $this->createCategory(1)[0];
@@ -68,7 +64,6 @@ class TransactionCreateTest extends TestCase
 
     public function test_amount_should_be_integer()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => 'string',
@@ -81,7 +76,6 @@ class TransactionCreateTest extends TestCase
 
     public function test_wallet_id_should_be_integer()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => $this->amount,
@@ -94,7 +88,6 @@ class TransactionCreateTest extends TestCase
 
     public function test_wallet_id_should_exist()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => $this->amount,
@@ -107,7 +100,6 @@ class TransactionCreateTest extends TestCase
 
     public function test_category_id_should_be_integer()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => $this->amount,
@@ -120,7 +112,6 @@ class TransactionCreateTest extends TestCase
 
     public function test_category_id_should_exist()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => $this->amount,
@@ -133,7 +124,6 @@ class TransactionCreateTest extends TestCase
 
     public function test_status_should_be_valid()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $response = $this->callRequest($this->method, $this->url, [
             'amount' => $this->amount,
@@ -146,7 +136,6 @@ class TransactionCreateTest extends TestCase
 
     public function test_wallet_inventory_should_increase_with_income_transaction()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $wallet = $this->createWallet(1,['inventory' => 200])[0];
         $expectedInventory = $wallet->inventory+$this->amount;
@@ -163,7 +152,6 @@ class TransactionCreateTest extends TestCase
 
     public function test_wallet_inventory_should_decrease_with_expense_transaction()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $wallet = $this->createWallet(1,['inventory' => 200])[0];
         $expectedInventory = $wallet->inventory-$this->amount;
@@ -180,7 +168,6 @@ class TransactionCreateTest extends TestCase
 
     public function test_wallet_inventory_should_be_greater_than_expense_transaction()
     {
-        /** @var User */
         Passport::actingAs($this->user);
         $wallet = $this->createWallet(1,['inventory' => 5])[0];
         $response = $this->callRequest($this->method, $this->url, [

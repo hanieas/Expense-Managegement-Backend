@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Testing\Fluent\AssertableJson;
 use Tests\TestCase;
 use App\Responders\Message;
+use Laravel\Passport\Passport;
 
 class CategoryListTest extends TestCase
 {
@@ -40,13 +41,10 @@ class CategoryListTest extends TestCase
 
     public function test_a_signed_in_owner_user_can_get_list_of_categories()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         $response = $this->callRequest(
             $this->method,
-            $this->url,
-            [
-                'Authorization' => 'Bearer ' . $token
-            ]
+            $this->url
         );
         $response->assertStatus(200)
             ->assertJson(fn (AssertableJson $json) =>

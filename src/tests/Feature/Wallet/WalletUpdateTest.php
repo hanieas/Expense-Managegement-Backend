@@ -9,7 +9,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
 use App\Responders\Message;
-
+use Laravel\Passport\Passport;
 
 class WalletUpdateTest extends TestCase
 {
@@ -17,9 +17,6 @@ class WalletUpdateTest extends TestCase
 
     /** @var User */
     protected User $user;
-
-    /** @var Currency */
-    protected Currency $currency;
 
     /** @var Wallet */
     protected Wallet $wallet;
@@ -31,11 +28,10 @@ class WalletUpdateTest extends TestCase
     {
         parent::setUp();
 
-        $this->currency = Currency::factory()->create();
-        $this->user = User::factory()->create();
+        $this->user = $this->createUser(1)[0];
         $this->name = 'Wallet';
-        $this->wallet = Wallet::factory()->create(['user_id' => $this->user->id]);
-        $this->url = $this->wallet->path. '/' . $this->wallet->id;
+        $this->wallet = $this->createWallet(1, ['user_id' => $this->user->id])[0];
+        $this->url = $this->wallet->path . '/' . $this->wallet->id;
     }
 
     public function test_an_unautenticated_user_cant_update_wallet()
@@ -44,53 +40,38 @@ class WalletUpdateTest extends TestCase
         $response->assertJson(['message' => Message::ONLY_AUTHENTICATED_USER]);
     }
 
-    public function test_name_is_required()
+    public function test_required_fields()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         Gate::define('check-wallet-own', function () {
             return true;
         });
-        $response = $this->callRequest('put', $this->url, [
-            'Authorization' => 'Bearer ' . $token,
-            'inventory' => 10000,
+        $response = $this->callRequest('put', $this->url);
+        $response->assertInvalid([
+            'name' => Message::WALLET_NAME_IS_REQUIRED,
+            'inventory' => Message::WALLET_INVENTORY_IS_REUQIRED
         ]);
-        $response->assertJson(['message' => Message::WALLET_NAME_IS_REQUIRED]);
-    }
-
-    public function test_inventory_is_required()
-    {
-        $token = $this->generateToken($this->user);
-        Gate::define('check-wallet-own', function () {
-            return true;
-        });
-        $response = $this->callRequest('put', $this->url, [
-            'Authorization' => 'Bearer ' . $token,
-            'name' => $this->name,
-        ]);
-        $response->assertJson(['message' => Message::WALLET_INVENTORY_IS_REUQIRED]);
     }
 
     public function test_inventory_should_be_integer()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         Gate::define('check-wallet-own', function () {
             return true;
         });
         $response = $this->callRequest('put', $this->url, [
-            'Authorization' => 'Bearer ' . $token,
             'name' => $this->name,
             'inventory' => 'string'
         ]);
-        $response->assertJson(['message' => Message::WALLET_INVENTORY_SHOULD_BE_INTEGER]);
+        $response->assertInvalid(['inventory' => Message::WALLET_INVENTORY_SHOULD_BE_INTEGER]);
     }
 
     public function test_just_wallet_owner_can_update_wallet()
     {
-        $token = $this->generateToken(User::factory()->create());
+        Passport::actingAs($this->user);
         $response = $this->callRequest('put', $this->url, [
-            'Authorization' => 'Bearer ' . $token,
-            'name'=> $this->name,
-            'inventory'=> 0
+            'name' => $this->name,
+            'inventory' => 0
         ]);
         $response->assertJson(['error' => Message::ONLY_WALLET_OWNER_CAN_GET_WALLET])
             ->assertStatus(403);
@@ -98,12 +79,11 @@ class WalletUpdateTest extends TestCase
 
     public function test_a_signed_in_owner_user_can_update_wallet()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         Gate::define('check-wallet-own', function () {
             return true;
         });
         $response = $this->callRequest('put', $this->url, [
-            'Authorization' => 'Bearer ' . $token,
             'name' => 'Updated Name',
             'inventory' => 10000,
         ]);
@@ -117,13 +97,12 @@ class WalletUpdateTest extends TestCase
 
     public function test_a_user_cant_update_a_wallet_with_duplicated_name()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         $wallet2 = Wallet::factory()->create([
             'user_id' => $this->user->id,
             'name' => 'Wallet2'
         ]);
-        $response = $this->callRequest('put', $this->url,[
-            'Authorization' => 'Bearer ' . $token,
+        $response = $this->callRequest('put', $this->url, [
             'name' => $wallet2->name,
             'inventory' => 10000
         ]);

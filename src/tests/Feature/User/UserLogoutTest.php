@@ -6,6 +6,7 @@ use App\Models\Currency;
 use App\Models\User;
 use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Passport\Passport;
 use Tests\TestCase;
 
 class UserLogoutTest extends TestCase
@@ -15,9 +16,6 @@ class UserLogoutTest extends TestCase
     /** @var User */
     protected User $user;
 
-    /** @var Currency */
-    protected Currency $currency;
-
     /** @var string */
     protected string $url;
 
@@ -25,15 +23,14 @@ class UserLogoutTest extends TestCase
     {
         parent::setUp();
 
-        $this->currency = Currency::factory()->create();
-        $this->user = User::factory()->create();
+        $this->user = $this->createUser(1)[0];
         $this->url = $this->user->logout_path;
     }
 
     public function test_a_signed_in_user_can_logout()
     {
-        $token = $this->generateToken($this->user);
-        $response = $this->callRequest('post', $this->url, ['Authorization' => 'Bearer ' . $token]);
+        Passport::actingAs($this->user);
+        $response = $this->callRequest('post', $this->url);
         $response->assertStatus(200);
     }
 

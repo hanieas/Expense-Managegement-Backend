@@ -8,6 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Gate;
 use Tests\TestCase;
 use App\Responders\Message;
+use Laravel\Passport\Passport;
 
 class CategoryDeleteTest extends TestCase
 {
@@ -40,23 +41,19 @@ class CategoryDeleteTest extends TestCase
 
     public function test_just_wallet_owner_can_delete_category()
     {
-        $token = $this->generateToken(User::factory()->create());
-        $response = $this->callRequest($this->method, $this->url, [
-            'Authorization' => 'Bearer ' . $token
-        ]);
+        Passport::actingAs($this->user);
+        $response = $this->callRequest($this->method, $this->url);
         $response->assertJson(['error' => Message::ONLY_CATEGORY_OWNER_CAN_GET_IT])
             ->assertStatus(403);
     }
 
     public function test_a_signed_in_owner_user_can_delete_category()
     {
-        $token = $this->generateToken($this->user);
+        Passport::actingAs($this->user);
         Gate::define('check-category-own', function () {
             return true;
         });
-        $response = $this->callRequest($this->method, $this->url, [
-            'Authorization' => 'Bearer ' . $token
-        ]);
+        $response = $this->callRequest($this->method, $this->url);
         $response->assertStatus(200);
         $this->assertDatabaseCount('categories',0);
     }

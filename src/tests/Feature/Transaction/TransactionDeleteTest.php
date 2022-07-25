@@ -6,7 +6,6 @@ use App\Models\User;
 use App\Models\Wallet;
 use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Passport\Passport;
 use Tests\TestCase;
@@ -28,7 +27,6 @@ class TransactionDeleteTest extends TestCase
     {
         parent::setUp();
 
-        Artisan::call('passport:install');
         $this->user = $this->createUser(1)[0];
         $this->wallet = $this->createWallet(1, ['inventory' => 200])[0];
         $this->amount = 20;
