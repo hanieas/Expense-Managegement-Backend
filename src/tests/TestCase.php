@@ -4,7 +4,9 @@ namespace Tests;
 
 use App\Models\Category;
 use App\Models\Currency;
+use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Wallet;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Artisan;
 use Laravel\Passport\Passport;
@@ -52,5 +54,16 @@ abstract class TestCase extends BaseTestCase
     protected function createCategory($count,$attributes)
     {
         return Category::factory($count)->create($attributes);
+    }
+
+    protected function createWallet($count,$attributes=[])
+    {
+        return Wallet::factory($count)->create($attributes);
+    }
+
+    protected function createTransaction($count,$attributes=[])
+    {
+        Category::factory()->create();
+        return Transaction::factory($count)->create($attributes);
     }
 }
