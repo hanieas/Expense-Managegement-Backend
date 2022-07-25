@@ -11,7 +11,12 @@ class Transaction extends Model
 
     const INCOME_SIGN = '+';
     const EXPENSE_SIGN = '-';
-
+    
+    /**
+     * The attributes that are fillable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'user_id',
         'amount',
@@ -41,17 +46,32 @@ class Transaction extends Model
     {
         return env('PREFIX_URL') . '/transactions';
     }
-
+    
+    /**
+     * Each transaction belongs to a user.
+     *
+     * @return void
+     */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
+    
+    /**
+     * Each transaction belongs to a wallet.
+     *
+     * @return void
+     */
     public function wallet()
     {
         return $this->belongsTo(Wallet::class, 'wallet_id');
     }
-
+    
+    /**
+     * Each transaction belongs to a category.
+     *
+     * @return void
+     */
     public function category()
     {
         return $this->belongsTo(Category::class, 'category_id');
