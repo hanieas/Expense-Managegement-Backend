@@ -9,7 +9,6 @@ use App\Repositories\Interfaces\IWalletRepository;
 use App\Repositories\WalletRepository;
 use App\Responders\WalletResponder;
 use App\Responders\IResponder;
-use Illuminate\Http\JsonResponse;
 
 class WalletController extends Controller
 {
@@ -35,11 +34,11 @@ class WalletController extends Controller
     /**
      * Get the list of wallets for the signed in user.
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group Wallet CRUD
      * @authenticated
      */
-    public function index(): JsonResponse
+    public function index()
     {
         $response = $this->repository->getList();
         return $this->responder->respondCollection($response);
@@ -49,11 +48,11 @@ class WalletController extends Controller
      * Store a Wallet
      * 
      * @param  WalletStoreRequest $request
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group Wallet CRUD
      * @authenticated
      */
-    public function store(WalletStoreRequest $request): JsonResponse
+    public function store(WalletStoreRequest $request)
     {
         $response = $this->repository->create($request->validated());
         return $this->responder->respondResource($response);
@@ -63,11 +62,11 @@ class WalletController extends Controller
      * Show a Wallet
      *
      * @param  Wallet $wallet
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group Wallet CRUD
      * @authenticated
      */
-    public function show(Wallet $wallet): JsonResponse
+    public function show(Wallet $wallet)
     {
         if ($this->repository->checkOwn($wallet)) {
             return $this->responder->respondResource($wallet);
@@ -80,11 +79,11 @@ class WalletController extends Controller
      *
      * @param  WalletUpdateRequest $request
      * @param  Wallet $wallet
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group Wallet CRUD
      * @authenticated
      */
-    public function update(WalletUpdateRequest $request, Wallet $wallet): JsonResponse
+    public function update(WalletUpdateRequest $request, Wallet $wallet)
     {
         if ($this->repository->checkOwn($wallet)) {
             $wallet->update($request->validated());
@@ -97,11 +96,11 @@ class WalletController extends Controller
      * Delete a Wallet
      *
      * @param  Wallet $wallet
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group Wallet CRUD
      * @authenticated
      */
-    public function destroy(Wallet $wallet): JsonResponse
+    public function destroy(Wallet $wallet)
     {
         if ($this->repository->checkOwn($wallet)) {
             $wallet->delete();

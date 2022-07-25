@@ -33,7 +33,7 @@ class UserController extends Controller
      * Signup
      *
      * @param  UserSignUpRequest $request
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group User Authentication
      * @bodyParam email required The email of the user. Example:hanieasemi@gmail.com
      * @bodyParam password required The password of the user. Example:password
@@ -52,7 +52,7 @@ class UserController extends Controller
      * Login
      *
      * @param  UserLoginRequest $request
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group User Authentication
      * @bodyParam email required The email of user. Example:hanieasemi@gmail.com
      * @bodyParam password required The password of user. Example:password
@@ -69,7 +69,7 @@ class UserController extends Controller
     /**
      * Logout
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group User Authentication
      * @authenticated
      */

@@ -10,7 +10,6 @@ use App\Repositories\Interfaces\ICategoryRepository;
 use App\Responders\CategoryResponder;
 use App\Responders\IResponder;
 use App\Responders\Message;
-use Illuminate\Http\JsonResponse;
 
 class CategoryController extends Controller
 {
@@ -38,7 +37,7 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group Category CRUD
      * @authenticated
      */
@@ -52,11 +51,11 @@ class CategoryController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  CategoryStoreRequest  $request
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group Category CRUD
      * @authenticated
      */
-    public function store(CategoryStoreRequest $request): JsonResponse
+    public function store(CategoryStoreRequest $request)
     {
         $response = $this->repository->create($request->validated());
         return $this->responder->respondResource($response);
@@ -66,11 +65,11 @@ class CategoryController extends Controller
      * Display the specified resource.
      *
      * @param  Category  $category
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group Category CRUD
      * @authenticated
      */
-    public function show(Category $category): JsonResponse
+    public function show(Category $category)
     {
         if ($this->repository->checkOwn($category)) {
             return $this->responder->respondResource($category);
@@ -83,11 +82,11 @@ class CategoryController extends Controller
      *
      * @param  CategoryUpdateRequest  $request
      * @param  Category  $category
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group Category CRUD
      * @authenticated
      */
-    public function update(CategoryUpdateRequest $request, Category $category): JsonResponse
+    public function update(CategoryUpdateRequest $request, Category $category)
     {
         if ($this->repository->checkOwn($category)) {
             $category->update($request->validated());
@@ -100,11 +99,11 @@ class CategoryController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  Category  $category
-     * @return JsonResponse
+     * @return \Illuminate\Http\Response
      * @group Category CRUD
      * @authenticated
      */
-    public function destroy(Category $category): JsonResponse
+    public function destroy(Category $category)
     {
         if ($this->repository->checkOwn($category)) {
             $category->delete();
