@@ -1,0 +1,2359 @@
+{
+	"info": {
+		"_postman_id": "2d6adf5c-ad65-469b-b419-6845530d299e",
+		"name": "Expense Mgmt",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User Login",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "hanieasemi76@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/user/login",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "hanieasemi76@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/user/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"user",
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"email\": \"hanieasemi76@gmail.com\",\n        \"username\": \"honey1\",\n        \"currency_id\": 9,\n        \"created_at\": \"2022-07-25T18:27:11.000000Z\",\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiY2IwMTMwMjU2Yzk3NGU2ZWEzY2ExMzdmMWI5NGIxMTIzNDA1YTc5NzUyYjVkZGQ5YjdiNjQzMDk5MTkxMTZkMGI0MWQxNjI0NTg5YTFkMWMiLCJpYXQiOjE2NTg3NzM4MTIuMzE3NzMzLCJuYmYiOjE2NTg3NzM4MTIuMzE3NzM2LCJleHAiOjE2OTAzMDk4MTIuMjg0NDc3LCJzdWIiOiI1NDIiLCJzY29wZXMiOltdfQ.Yo1TNMVQneoe4D_gov0LaTMGMXcwWRo4dNZH6eunCmeLnYM23l4RpGmokRl5J2gzjZYtBZGqyHubX2-gLc904q_qpc_q8M1n9FTxL3rkd0RKxpHUUXL-onbG9yHQw16olQW62Flj0NVPfSZymRDyu6aGWR9ZUxjMq5S2rxl87653dIlo7aT6kDEURNvH3dSBm_57CHqCSpUzsZfsmQxeehUWDCy9GgYs6qoKE2x3Fi81ZA84tCSm72z90X6bGIfWKRKoHHDvna_0pN5QYopQygARYkfN9d6gr5iPY-rkW6BXURColkze2iaMmUAmzGZOdxAi0TRoWbENKDd5QlS4cpKl12eXNdO8EY6a13hjjO7lUgXqqZVL01IhSAV8_ojsNPS6m_s62tlL_ouU8iIBSCIHN00jm3oIAHL1z6JLHrYb7eDquc1guSAQfB_SK1xUX-SeguFUnpmBYePbVOqqDgfFflAYgopYNYjOOeiNLE15Z41oj26d2_ZKpA4mDFvCc1TbXNJp5Fr3TwFt5iY8cQ9xxvz4NCSudU2fFfklq78TJSFHMkIDUsvQTWX2tLZV6NytGJj18h2dF1z43VCrDyxhYiD7cUenMVljS6PUx64uKlWI5N9bBeYlGx2XTYRVzcEGChNRnGKbMXaBDbBplfTAdBXVrcgNenbqXslTXsc\"\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/user/login\"\n    }\n}"
+				},
+				{
+					"name": "required fields for login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/user/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"user",
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"The email field is required. (and 1 more error)\",\n    \"errors\": {\n        \"email\": [\n            \"The email field is required.\"\n        ],\n        \"password\": [\n            \"The password field is required.\"\n        ]\n    }\n}"
+				},
+				{
+					"name": "incorrect password or email",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "hanieasemi76@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "12345",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/user/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"user",
+								"login"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"email or password is incorrect\",\n    \"meta\": {\n        \"status\": 422,\n        \"current\": \"http://127.0.0.1:8080/api/v1/user/login\",\n        \"payload\": {\n            \"attributes\": {},\n            \"request\": {},\n            \"query\": {},\n            \"server\": {},\n            \"files\": {},\n            \"cookies\": {},\n            \"headers\": {}\n        }\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "User SignUp",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "hanieasemi76@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "currency_id",
+							"value": "9",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "honey1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/user/signup",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"user",
+						"signup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "required fields for signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/user/signup",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"user",
+								"signup"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"The email field is required. (and 3 more errors)\",\n    \"errors\": {\n        \"email\": [\n            \"The email field is required.\"\n        ],\n        \"password\": [\n            \"The password field is required.\"\n        ],\n        \"currency_id\": [\n            \"The currency id field is required.\"\n        ],\n        \"username\": [\n            \"The username field is required.\"\n        ]\n    }\n}"
+				},
+				{
+					"name": "successful signup",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "hanieasemi76@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "currency_id",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "honey1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/user/signup",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"user",
+								"signup"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"email\": \"hanieasemi76@gmail.com\",\n        \"username\": \"honey1\",\n        \"currency_id\": \"9\",\n        \"created_at\": \"2022-07-25T18:27:11.000000Z\",\n        \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMmZjZTBiMzBiZmY4MGY5ODliYzU1YTFjYjNkNDVmM2NjMWE4NTQxN2I2ZDA3OWIxMTE4NGU1MzE0OTFlZmM3YjI0NTVlODI2YTBjYzU0MTgiLCJpYXQiOjE2NTg3NzM2MzEuNjQ1MDIzLCJuYmYiOjE2NTg3NzM2MzEuNjQ1MDI3LCJleHAiOjE2OTAzMDk2MzEuNjA5MTc5LCJzdWIiOiI1NDIiLCJzY29wZXMiOltdfQ.kEUFidEjliK7g3DpRKDivj8BGKZvYdx8r6g5P-fWLqIIpdf00JeCn9wm1opu8hQTxFndgQUaAd1QGn9K2eabx2F0SsOFg7YZkOZpgQojaqSDQGERVkTLQ9CTORb9sNKOuMTRC5djxuQGRdGokACmy5gKKGkcISpJjO87wg-eeiF7IQLflz4X2888d8T0t3CUZZYx_sBWL07R9I-psMgptiAKqkPazgTGY4x4G3gmu8wKRHGsrndxDjO8bUPU-_lyG9DrWq8TkrtFRw-8i8NhRebNO7IkbHqLTzO810C6s5gpweqzrlgjUdRyijdIZlQ59seZ7mlXjE_YLWJbGcsay6WC_p6YebKcOe7vfDZ-KwlLgJA6INx1BmI3UAv5X-ckdc9LhB43FK7pXhHyZ6npZ6Pf2nw_-x2bEz0OAk98eYZCLTjEdPOYoheagCJOuSa6vMkhGnKuP1_6t8dbfPLc3PvUlDwH9lQ43K52cnmFmFMHa-6J80OGKJhzSeMucpPvq1FY6MU7YkzmM4HCmmK52t6UP3C8wFDMs3zOACH0IUUngKIIN0p_DIA4d9l7TS5Lq4YaRIGYaTVDSWcwXgKXM4zmpblNEORfKgJz2X_6hnk0uJCOanftJKOxTNugV2L1JREfcdWjDcqEA7rxWt7o0SeElTMlEtBlF-5P34JYbGA\"\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/user/signup\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "User Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI1IiwianRpIjoiZDM0ODhlOTFmODljM2JlZDQyMGMwM2ExOGYyNzgwYzYwNDlkNDkxMWI5OGUwMWY2ZDY3ZjkxNmMyNjI3Nzc1MTExZjY3MTdlNzVhYTZiYTgiLCJpYXQiOjE2NTg1NjE1MzMuNDE0OTQ1LCJuYmYiOjE2NTg1NjE1MzMuNDE0OTQ4LCJleHAiOjE2OTAwOTc1MzMuMzc0MjUxLCJzdWIiOiI0MCIsInNjb3BlcyI6W119.EwlZ95hgWN-RjlI-ATxRg-jS8ek2xU5G4sbgo3cmMlbahea3oD0qZtB1GQ7nxQCVwPEEXRwHQVzqCZx-RZA0VPr9BDc23D16TfvYKmT1HjvV4fhtnk6g3lBl8KizvnWwd5FxOaGtBDCSXqFRQAefqjgbKp5VUQ7nz-HuHpv5wY5UDDxhKane9a_3fHsrhPYXVDbKdf1wvYLOwBGDfyAkh0Ky8BbOGKd4Nybb83c8MuhJEdvdeqkuBRuZhagK6iX1pKFdOSfDz1wM3zj9VpsjcfcEZ0gtWxG45lOXJ-bOSn2cFeL0KxI2QMuARiHUqx-3OgzRckhDLOsoTZlxSUlApAMswpCA9ucaNEDABsST_R4RYY3qUf5XFLf7TIXInTX68hNBa-Ds4sK3f5qcNBKuGCm2Rg9nAwko1Y_HwPyR_RkC13cfcjqLdp1NnT7G_XC9wEbEj3PvD-WHMVzd3GRrwRy0WAIwtAEWKcrMrtgY0TKHLBLWHHzugIzsGRraHdf1J6aLtmCeO0Z-GwABb44X0tz_T06poBb7DSHLJ3R-MG1laHpFln7By2Zg5xoPMifDnET75mQ0I6GKA3L7bWA6jV65_rHkZcqsFGQY_npV7UV61uPD2SveB5EbhWJfzZQidQJV0N2GG5z-IrsfCOpQ8nG52cluplVvcCouYLJPunA",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/user/logout",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"user",
+						"logout"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull logout",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/user/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"You have been successfully logged out.\",\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/user/logout\",\n        \"payload\": []\n    }\n}"
+				},
+				{
+					"name": "unauthenticated user",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/user/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"user",
+								"logout"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"Unauthenticated.\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create a Wallet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzYzZmU1YjM5ZDg3ZGM1MWUzMDg4OWY0MTU2NmUyOGY5MDEwZTE3ODFhYzgzODQyNGUxOGQ4MTA5ZjBiOWM1YTE1NDFlM2JlMTU0NjUwOTEiLCJpYXQiOjE2NTg2NjU5NjAuMzg3NDg3LCJuYmYiOjE2NTg2NjU5NjAuMzg3NDksImV4cCI6MTY5MDIwMTk2MC4zNTA1OTIsInN1YiI6IjYxIiwic2NvcGVzIjpbXX0.AcilPPaFsTQMANPUQvCHo19ElmfKwr80TOj5cVKmOyOf63kPfkwbGY22rG7W9NXLQFI-HnShSJbduXXb99m8eMsItllCJYAcOwajla7L-hm2EesI5YEotoLON03yLH60k-bC-f-XJHjPkbEsKL0FvLunObHGuCBPZG8TXDhFU9lZtUamuHfRQO1bbiVnLIU0bUUamFGClQ4dg312ZE7ch-o3hTlC5QmD8F-A2yevjgxfhHgRr_1R7cjEWEU2t9lXHEKABfZzrEXjpC5LNJNmcEJb_wi9LUbbcUsP1K0a8pzLdKTsNPmksyeQEhGZlFXzmIEuZC2h4zBWUadbBf-TNbOEw-_0D6YY6njDjFozgrHFnW5bp5kdnUBeOYjT2zZxMIo61XR_1pTxCdb4kvWCyjO28FDybPraPuwsV27kF12peQzM5mBd6PFT9x8GPnb16xHkmvCQCE_hZm_6Hhx8sOWQwrvD3wHzZl9HWBak0MYKoLlfhMWzLpgsR6SJCtF9PmyPpoJdBrMN93PY95PzvoC8qwjwoBrBTUX5OYA8RBAtNTj_GilntqO-dSrcKIQAeLJhHq8t1zmQSotGroAQ2YJV353EVxiChda_77NK1Ek-8l_gq6A-rTl_v-QBj3dwE2CR7akJpHKYZ-IvpAxqgj6E2JBOiUe3Y6F3Z_zIuBg",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Tejarat2",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/wallets",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"wallets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Tejarat2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/wallets",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"wallets"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 1142,\n        \"name\": \"Tejarat2\",\n        \"inventory\": 0,\n        \"created_at\": \"2022-07-25T18:46:43.000000Z\",\n        \"updated_at\": \"2022-07-25T18:46:43.000000Z\",\n        \"user\": {\n            \"id\": 542,\n            \"email\": \"hanieasemi76@gmail.com\",\n            \"email_verified_at\": null,\n            \"username\": \"honey1\",\n            \"currency_id\": 9,\n            \"created_at\": \"2022-07-25T18:27:11.000000Z\",\n            \"updated_at\": \"2022-07-25T18:27:11.000000Z\"\n        }\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/wallets\"\n    }\n}"
+				},
+				{
+					"name": "required fields for creating a wallet",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/wallets",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"wallets"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"The name field is required.\",\n    \"errors\": {\n        \"name\": [\n            \"The name field is required.\"\n        ]\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Show a Wallet",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZGNkMjRiNzA2MmZlMmU0ZmEzYzNhOTc5NTZhMTI3NDA2ZDQ1NjZkZDU0OWM5MTc0OTc3MDk2NmYwNWM0YmRlMzM1MzZhMDMxYmEzMDMwMmUiLCJpYXQiOjE2NTg3NzQ3ODYuOTY5ODg4LCJuYmYiOjE2NTg3NzQ3ODYuOTY5OSwiZXhwIjoxNjkwMzEwNzg2Ljg5NTcxNiwic3ViIjoiNTQyIiwic2NvcGVzIjpbXX0.np_v6Ru1oEkiCMv10eEk-_BQhKUokJeDG1ePykip4sjrXmrIG4FO6CJRsHzPpSmaLS2ZGBUvcVKzw9OPxlXl13zyZ4M2--fuEN0KsVDALIkv4FnnWxlf7b3TCZp_PJiMtF5LaiqH1WXdT1SHjYZgMdH3PTppPG0FyngNFv1GZkjuSGY9eKU6lWc6Lqeit8OYnod3rpYwi4vC5MHcFK5ocL5-IFPyf189lFpu5myXMxEYCewQSsFzEYb9VSOIILSlV4cI3cz9_igYNPDXb3iI2scmJ4E6bgHZ3Cj8f3oJ3slSoWHp7DWKb9JR9cHl8ofA-53-hG2rg3EPgBj4J5rexy8yZI8iwNy-sMHD2Q4HwCFexlZuTMKxBQe_H3dm6L0k9H4pxCrtcDJmgUZN9nK6i529MR9VBBdABeojqyVIaFCD4sobNtXO18lBSBsB90-XGRK23d50BU6PcUL5fSNSX9Si2bmNvz7VZiNtLsuDHfe32dD5ADNKK8-GnqbJn995r4bUJiTm_rmPHB8OuDXwYssMNwIulY2onmnhnvtEZNyQXbuvkgf6CVrYKxLVx_U9ESBOrJC512rE1uDHuzoddXpmz8-NMmBCO_8m9bRQORcrzbuleqXcWnDhrFIIR0ZIH72-h7j0fSqKYRf8kDK7GUOD1lo5XgWhiaZmZG1C5NY",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/wallets/1144",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"wallets",
+						"1144"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "permission error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/wallets/122",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"wallets",
+								"122"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"You dont own this wallet.\",\n    \"meta\": {\n        \"status\": 403,\n        \"current\": \"http://127.0.0.1:8080/api/v1/wallets/1142\",\n        \"payload\": []\n    }\n}"
+				},
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/wallets/122",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"wallets",
+								"122"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 1142,\n        \"name\": \"Tejarat2\",\n        \"inventory\": 0,\n        \"created_at\": \"2022-07-25T18:46:43.000000Z\",\n        \"updated_at\": \"2022-07-25T18:46:43.000000Z\",\n        \"user\": {\n            \"id\": 542,\n            \"email\": \"hanieasemi76@gmail.com\",\n            \"email_verified_at\": null,\n            \"username\": \"honey1\",\n            \"currency_id\": 9,\n            \"created_at\": \"2022-07-25T18:27:11.000000Z\",\n            \"updated_at\": \"2022-07-25T18:27:11.000000Z\"\n        }\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/wallets/1142\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update a Wallet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZGNkMjRiNzA2MmZlMmU0ZmEzYzNhOTc5NTZhMTI3NDA2ZDQ1NjZkZDU0OWM5MTc0OTc3MDk2NmYwNWM0YmRlMzM1MzZhMDMxYmEzMDMwMmUiLCJpYXQiOjE2NTg3NzQ3ODYuOTY5ODg4LCJuYmYiOjE2NTg3NzQ3ODYuOTY5OSwiZXhwIjoxNjkwMzEwNzg2Ljg5NTcxNiwic3ViIjoiNTQyIiwic2NvcGVzIjpbXX0.np_v6Ru1oEkiCMv10eEk-_BQhKUokJeDG1ePykip4sjrXmrIG4FO6CJRsHzPpSmaLS2ZGBUvcVKzw9OPxlXl13zyZ4M2--fuEN0KsVDALIkv4FnnWxlf7b3TCZp_PJiMtF5LaiqH1WXdT1SHjYZgMdH3PTppPG0FyngNFv1GZkjuSGY9eKU6lWc6Lqeit8OYnod3rpYwi4vC5MHcFK5ocL5-IFPyf189lFpu5myXMxEYCewQSsFzEYb9VSOIILSlV4cI3cz9_igYNPDXb3iI2scmJ4E6bgHZ3Cj8f3oJ3slSoWHp7DWKb9JR9cHl8ofA-53-hG2rg3EPgBj4J5rexy8yZI8iwNy-sMHD2Q4HwCFexlZuTMKxBQe_H3dm6L0k9H4pxCrtcDJmgUZN9nK6i529MR9VBBdABeojqyVIaFCD4sobNtXO18lBSBsB90-XGRK23d50BU6PcUL5fSNSX9Si2bmNvz7VZiNtLsuDHfe32dD5ADNKK8-GnqbJn995r4bUJiTm_rmPHB8OuDXwYssMNwIulY2onmnhnvtEZNyQXbuvkgf6CVrYKxLVx_U9ESBOrJC512rE1uDHuzoddXpmz8-NMmBCO_8m9bRQORcrzbuleqXcWnDhrFIIR0ZIH72-h7j0fSqKYRf8kDK7GUOD1lo5XgWhiaZmZG1C5NY",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Tejarat",
+							"type": "text"
+						},
+						{
+							"key": "inventory",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "_method",
+							"value": "PUT",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/wallets/1142",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"wallets",
+						"1142"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "permission error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Test5",
+									"type": "text"
+								},
+								{
+									"key": "inventory",
+									"value": "1001",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/wallets/70",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"wallets",
+								"70"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"You dont own this wallet.\",\n    \"meta\": {\n        \"status\": 403,\n        \"current\": \"http://127.0.0.1:8080/api/v1/wallets/70\",\n        \"payload\": []\n    }\n}"
+				},
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Tejarat",
+									"type": "text"
+								},
+								{
+									"key": "inventory",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/wallets/70",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"wallets",
+								"70"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 1142,\n        \"name\": \"Tejarat\",\n        \"inventory\": 100,\n        \"created_at\": \"2022-07-25T18:46:43.000000Z\",\n        \"updated_at\": \"2022-07-25T18:50:35.000000Z\",\n        \"user\": {\n            \"id\": 542,\n            \"email\": \"hanieasemi76@gmail.com\",\n            \"email_verified_at\": null,\n            \"username\": \"honey1\",\n            \"currency_id\": 9,\n            \"created_at\": \"2022-07-25T18:27:11.000000Z\",\n            \"updated_at\": \"2022-07-25T18:27:11.000000Z\"\n        }\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/wallets/1142\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete a Wallet",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZGNkMjRiNzA2MmZlMmU0ZmEzYzNhOTc5NTZhMTI3NDA2ZDQ1NjZkZDU0OWM5MTc0OTc3MDk2NmYwNWM0YmRlMzM1MzZhMDMxYmEzMDMwMmUiLCJpYXQiOjE2NTg3NzQ3ODYuOTY5ODg4LCJuYmYiOjE2NTg3NzQ3ODYuOTY5OSwiZXhwIjoxNjkwMzEwNzg2Ljg5NTcxNiwic3ViIjoiNTQyIiwic2NvcGVzIjpbXX0.np_v6Ru1oEkiCMv10eEk-_BQhKUokJeDG1ePykip4sjrXmrIG4FO6CJRsHzPpSmaLS2ZGBUvcVKzw9OPxlXl13zyZ4M2--fuEN0KsVDALIkv4FnnWxlf7b3TCZp_PJiMtF5LaiqH1WXdT1SHjYZgMdH3PTppPG0FyngNFv1GZkjuSGY9eKU6lWc6Lqeit8OYnod3rpYwi4vC5MHcFK5ocL5-IFPyf189lFpu5myXMxEYCewQSsFzEYb9VSOIILSlV4cI3cz9_igYNPDXb3iI2scmJ4E6bgHZ3Cj8f3oJ3slSoWHp7DWKb9JR9cHl8ofA-53-hG2rg3EPgBj4J5rexy8yZI8iwNy-sMHD2Q4HwCFexlZuTMKxBQe_H3dm6L0k9H4pxCrtcDJmgUZN9nK6i529MR9VBBdABeojqyVIaFCD4sobNtXO18lBSBsB90-XGRK23d50BU6PcUL5fSNSX9Si2bmNvz7VZiNtLsuDHfe32dD5ADNKK8-GnqbJn995r4bUJiTm_rmPHB8OuDXwYssMNwIulY2onmnhnvtEZNyQXbuvkgf6CVrYKxLVx_U9ESBOrJC512rE1uDHuzoddXpmz8-NMmBCO_8m9bRQORcrzbuleqXcWnDhrFIIR0ZIH72-h7j0fSqKYRf8kDK7GUOD1lo5XgWhiaZmZG1C5NY",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/wallets/1222",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"wallets",
+						"1222"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "permission error",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/wallets/78",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"wallets",
+								"78"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"You dont own this wallet.\",\n    \"meta\": {\n        \"status\": 403,\n        \"current\": \"http://127.0.0.1:8080/api/v1/wallets/78\",\n        \"payload\": []\n    }\n}"
+				},
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/wallets/78",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"wallets",
+								"78"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"Your wallet is deleted successfully\",\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/wallets/1142\",\n        \"payload\": []\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "List of Wallets",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZGNkMjRiNzA2MmZlMmU0ZmEzYzNhOTc5NTZhMTI3NDA2ZDQ1NjZkZDU0OWM5MTc0OTc3MDk2NmYwNWM0YmRlMzM1MzZhMDMxYmEzMDMwMmUiLCJpYXQiOjE2NTg3NzQ3ODYuOTY5ODg4LCJuYmYiOjE2NTg3NzQ3ODYuOTY5OSwiZXhwIjoxNjkwMzEwNzg2Ljg5NTcxNiwic3ViIjoiNTQyIiwic2NvcGVzIjpbXX0.np_v6Ru1oEkiCMv10eEk-_BQhKUokJeDG1ePykip4sjrXmrIG4FO6CJRsHzPpSmaLS2ZGBUvcVKzw9OPxlXl13zyZ4M2--fuEN0KsVDALIkv4FnnWxlf7b3TCZp_PJiMtF5LaiqH1WXdT1SHjYZgMdH3PTppPG0FyngNFv1GZkjuSGY9eKU6lWc6Lqeit8OYnod3rpYwi4vC5MHcFK5ocL5-IFPyf189lFpu5myXMxEYCewQSsFzEYb9VSOIILSlV4cI3cz9_igYNPDXb3iI2scmJ4E6bgHZ3Cj8f3oJ3slSoWHp7DWKb9JR9cHl8ofA-53-hG2rg3EPgBj4J5rexy8yZI8iwNy-sMHD2Q4HwCFexlZuTMKxBQe_H3dm6L0k9H4pxCrtcDJmgUZN9nK6i529MR9VBBdABeojqyVIaFCD4sobNtXO18lBSBsB90-XGRK23d50BU6PcUL5fSNSX9Si2bmNvz7VZiNtLsuDHfe32dD5ADNKK8-GnqbJn995r4bUJiTm_rmPHB8OuDXwYssMNwIulY2onmnhnvtEZNyQXbuvkgf6CVrYKxLVx_U9ESBOrJC512rE1uDHuzoddXpmz8-NMmBCO_8m9bRQORcrzbuleqXcWnDhrFIIR0ZIH72-h7j0fSqKYRf8kDK7GUOD1lo5XgWhiaZmZG1C5NY",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/wallets",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"wallets"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/wallets",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"wallets"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 1143,\n                \"name\": \"Mellat\",\n                \"inventory\": 0,\n                \"created_at\": \"2022-07-25T18:53:20.000000Z\",\n                \"updated_at\": \"2022-07-25T18:53:20.000000Z\",\n                \"user\": {\n                    \"id\": 542,\n                    \"email\": \"hanieasemi76@gmail.com\",\n                    \"email_verified_at\": null,\n                    \"username\": \"honey1\",\n                    \"currency_id\": 9,\n                    \"created_at\": \"2022-07-25T18:27:11.000000Z\",\n                    \"updated_at\": \"2022-07-25T18:27:11.000000Z\"\n                }\n            },\n            {\n                \"id\": 1144,\n                \"name\": \"Saman\",\n                \"inventory\": 0,\n                \"created_at\": \"2022-07-25T18:53:28.000000Z\",\n                \"updated_at\": \"2022-07-25T18:53:28.000000Z\",\n                \"user\": {\n                    \"id\": 542,\n                    \"email\": \"hanieasemi76@gmail.com\",\n                    \"email_verified_at\": null,\n                    \"username\": \"honey1\",\n                    \"currency_id\": 9,\n                    \"created_at\": \"2022-07-25T18:27:11.000000Z\",\n                    \"updated_at\": \"2022-07-25T18:27:11.000000Z\"\n                }\n            }\n        ]\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/wallets\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create a Category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZGNkMjRiNzA2MmZlMmU0ZmEzYzNhOTc5NTZhMTI3NDA2ZDQ1NjZkZDU0OWM5MTc0OTc3MDk2NmYwNWM0YmRlMzM1MzZhMDMxYmEzMDMwMmUiLCJpYXQiOjE2NTg3NzQ3ODYuOTY5ODg4LCJuYmYiOjE2NTg3NzQ3ODYuOTY5OSwiZXhwIjoxNjkwMzEwNzg2Ljg5NTcxNiwic3ViIjoiNTQyIiwic2NvcGVzIjpbXX0.np_v6Ru1oEkiCMv10eEk-_BQhKUokJeDG1ePykip4sjrXmrIG4FO6CJRsHzPpSmaLS2ZGBUvcVKzw9OPxlXl13zyZ4M2--fuEN0KsVDALIkv4FnnWxlf7b3TCZp_PJiMtF5LaiqH1WXdT1SHjYZgMdH3PTppPG0FyngNFv1GZkjuSGY9eKU6lWc6Lqeit8OYnod3rpYwi4vC5MHcFK5ocL5-IFPyf189lFpu5myXMxEYCewQSsFzEYb9VSOIILSlV4cI3cz9_igYNPDXb3iI2scmJ4E6bgHZ3Cj8f3oJ3slSoWHp7DWKb9JR9cHl8ofA-53-hG2rg3EPgBj4J5rexy8yZI8iwNy-sMHD2Q4HwCFexlZuTMKxBQe_H3dm6L0k9H4pxCrtcDJmgUZN9nK6i529MR9VBBdABeojqyVIaFCD4sobNtXO18lBSBsB90-XGRK23d50BU6PcUL5fSNSX9Si2bmNvz7VZiNtLsuDHfe32dD5ADNKK8-GnqbJn995r4bUJiTm_rmPHB8OuDXwYssMNwIulY2onmnhnvtEZNyQXbuvkgf6CVrYKxLVx_U9ESBOrJC512rE1uDHuzoddXpmz8-NMmBCO_8m9bRQORcrzbuleqXcWnDhrFIIR0ZIH72-h7j0fSqKYRf8kDK7GUOD1lo5XgWhiaZmZG1C5NY",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "Food",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/categories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"categories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Home",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"categories"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 1801,\n        \"name\": \"Home\",\n        \"created_at\": \"2022-07-25T18:55:09.000000Z\",\n        \"updated_at\": \"2022-07-25T18:55:09.000000Z\"\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/categories\"\n    }\n}"
+				},
+				{
+					"name": "required fields",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Home",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"categories"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"You dont own this category.\",\n    \"meta\": {\n        \"status\": 403,\n        \"current\": \"http://127.0.0.1:8080/api/v1/categories/1800\",\n        \"payload\": []\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get the Category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZGNkMjRiNzA2MmZlMmU0ZmEzYzNhOTc5NTZhMTI3NDA2ZDQ1NjZkZDU0OWM5MTc0OTc3MDk2NmYwNWM0YmRlMzM1MzZhMDMxYmEzMDMwMmUiLCJpYXQiOjE2NTg3NzQ3ODYuOTY5ODg4LCJuYmYiOjE2NTg3NzQ3ODYuOTY5OSwiZXhwIjoxNjkwMzEwNzg2Ljg5NTcxNiwic3ViIjoiNTQyIiwic2NvcGVzIjpbXX0.np_v6Ru1oEkiCMv10eEk-_BQhKUokJeDG1ePykip4sjrXmrIG4FO6CJRsHzPpSmaLS2ZGBUvcVKzw9OPxlXl13zyZ4M2--fuEN0KsVDALIkv4FnnWxlf7b3TCZp_PJiMtF5LaiqH1WXdT1SHjYZgMdH3PTppPG0FyngNFv1GZkjuSGY9eKU6lWc6Lqeit8OYnod3rpYwi4vC5MHcFK5ocL5-IFPyf189lFpu5myXMxEYCewQSsFzEYb9VSOIILSlV4cI3cz9_igYNPDXb3iI2scmJ4E6bgHZ3Cj8f3oJ3slSoWHp7DWKb9JR9cHl8ofA-53-hG2rg3EPgBj4J5rexy8yZI8iwNy-sMHD2Q4HwCFexlZuTMKxBQe_H3dm6L0k9H4pxCrtcDJmgUZN9nK6i529MR9VBBdABeojqyVIaFCD4sobNtXO18lBSBsB90-XGRK23d50BU6PcUL5fSNSX9Si2bmNvz7VZiNtLsuDHfe32dD5ADNKK8-GnqbJn995r4bUJiTm_rmPHB8OuDXwYssMNwIulY2onmnhnvtEZNyQXbuvkgf6CVrYKxLVx_U9ESBOrJC512rE1uDHuzoddXpmz8-NMmBCO_8m9bRQORcrzbuleqXcWnDhrFIIR0ZIH72-h7j0fSqKYRf8kDK7GUOD1lo5XgWhiaZmZG1C5NY",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/categories/1800",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"categories",
+						"1800"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/categories/102",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"categories",
+								"102"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 1801,\n        \"name\": \"Home\",\n        \"created_at\": \"2022-07-25T18:55:09.000000Z\",\n        \"updated_at\": \"2022-07-25T18:55:09.000000Z\"\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/categories/1801\"\n    }\n}"
+				},
+				{
+					"name": "permission error",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/categories/102",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"categories",
+								"102"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"You dont own this category.\",\n    \"meta\": {\n        \"status\": 403,\n        \"current\": \"http://127.0.0.1:8080/api/v1/categories/1800\",\n        \"payload\": []\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get List of Categories",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZGNkMjRiNzA2MmZlMmU0ZmEzYzNhOTc5NTZhMTI3NDA2ZDQ1NjZkZDU0OWM5MTc0OTc3MDk2NmYwNWM0YmRlMzM1MzZhMDMxYmEzMDMwMmUiLCJpYXQiOjE2NTg3NzQ3ODYuOTY5ODg4LCJuYmYiOjE2NTg3NzQ3ODYuOTY5OSwiZXhwIjoxNjkwMzEwNzg2Ljg5NTcxNiwic3ViIjoiNTQyIiwic2NvcGVzIjpbXX0.np_v6Ru1oEkiCMv10eEk-_BQhKUokJeDG1ePykip4sjrXmrIG4FO6CJRsHzPpSmaLS2ZGBUvcVKzw9OPxlXl13zyZ4M2--fuEN0KsVDALIkv4FnnWxlf7b3TCZp_PJiMtF5LaiqH1WXdT1SHjYZgMdH3PTppPG0FyngNFv1GZkjuSGY9eKU6lWc6Lqeit8OYnod3rpYwi4vC5MHcFK5ocL5-IFPyf189lFpu5myXMxEYCewQSsFzEYb9VSOIILSlV4cI3cz9_igYNPDXb3iI2scmJ4E6bgHZ3Cj8f3oJ3slSoWHp7DWKb9JR9cHl8ofA-53-hG2rg3EPgBj4J5rexy8yZI8iwNy-sMHD2Q4HwCFexlZuTMKxBQe_H3dm6L0k9H4pxCrtcDJmgUZN9nK6i529MR9VBBdABeojqyVIaFCD4sobNtXO18lBSBsB90-XGRK23d50BU6PcUL5fSNSX9Si2bmNvz7VZiNtLsuDHfe32dD5ADNKK8-GnqbJn995r4bUJiTm_rmPHB8OuDXwYssMNwIulY2onmnhnvtEZNyQXbuvkgf6CVrYKxLVx_U9ESBOrJC512rE1uDHuzoddXpmz8-NMmBCO_8m9bRQORcrzbuleqXcWnDhrFIIR0ZIH72-h7j0fSqKYRf8kDK7GUOD1lo5XgWhiaZmZG1C5NY",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/categories",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"categories"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/categories",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"categories"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 1801,\n                \"name\": \"Home\",\n                \"created_at\": \"2022-07-25T18:55:09.000000Z\",\n                \"updated_at\": \"2022-07-25T18:55:09.000000Z\"\n            },\n            {\n                \"id\": 1802,\n                \"name\": \"Food\",\n                \"created_at\": \"2022-07-25T18:58:27.000000Z\",\n                \"updated_at\": \"2022-07-25T18:58:27.000000Z\"\n            }\n        ]\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/categories\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzYzZmU1YjM5ZDg3ZGM1MWUzMDg4OWY0MTU2NmUyOGY5MDEwZTE3ODFhYzgzODQyNGUxOGQ4MTA5ZjBiOWM1YTE1NDFlM2JlMTU0NjUwOTEiLCJpYXQiOjE2NTg2NjU5NjAuMzg3NDg3LCJuYmYiOjE2NTg2NjU5NjAuMzg3NDksImV4cCI6MTY5MDIwMTk2MC4zNTA1OTIsInN1YiI6IjYxIiwic2NvcGVzIjpbXX0.AcilPPaFsTQMANPUQvCHo19ElmfKwr80TOj5cVKmOyOf63kPfkwbGY22rG7W9NXLQFI-HnShSJbduXXb99m8eMsItllCJYAcOwajla7L-hm2EesI5YEotoLON03yLH60k-bC-f-XJHjPkbEsKL0FvLunObHGuCBPZG8TXDhFU9lZtUamuHfRQO1bbiVnLIU0bUUamFGClQ4dg312ZE7ch-o3hTlC5QmD8F-A2yevjgxfhHgRr_1R7cjEWEU2t9lXHEKABfZzrEXjpC5LNJNmcEJb_wi9LUbbcUsP1K0a8pzLdKTsNPmksyeQEhGZlFXzmIEuZC2h4zBWUadbBf-TNbOEw-_0D6YY6njDjFozgrHFnW5bp5kdnUBeOYjT2zZxMIo61XR_1pTxCdb4kvWCyjO28FDybPraPuwsV27kF12peQzM5mBd6PFT9x8GPnb16xHkmvCQCE_hZm_6Hhx8sOWQwrvD3wHzZl9HWBak0MYKoLlfhMWzLpgsR6SJCtF9PmyPpoJdBrMN93PY95PzvoC8qwjwoBrBTUX5OYA8RBAtNTj_GilntqO-dSrcKIQAeLJhHq8t1zmQSotGroAQ2YJV353EVxiChda_77NK1Ek-8l_gq6A-rTl_v-QBj3dwE2CR7akJpHKYZ-IvpAxqgj6E2JBOiUe3Y6F3Z_zIuBg",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/transactions/336",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"transactions",
+						"336"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/transactions/336",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"transactions",
+								"336"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"The transaction is deleted successfully\",\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/transactions/336\",\n        \"payload\": []\n    }\n}"
+				},
+				{
+					"name": "not found exception",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/transactions/1272",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"transactions",
+								"1272"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"The transaction is deleted successfully\",\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/transactions/336\",\n        \"payload\": []\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Create a Transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzYzZmU1YjM5ZDg3ZGM1MWUzMDg4OWY0MTU2NmUyOGY5MDEwZTE3ODFhYzgzODQyNGUxOGQ4MTA5ZjBiOWM1YTE1NDFlM2JlMTU0NjUwOTEiLCJpYXQiOjE2NTg2NjU5NjAuMzg3NDg3LCJuYmYiOjE2NTg2NjU5NjAuMzg3NDksImV4cCI6MTY5MDIwMTk2MC4zNTA1OTIsInN1YiI6IjYxIiwic2NvcGVzIjpbXX0.AcilPPaFsTQMANPUQvCHo19ElmfKwr80TOj5cVKmOyOf63kPfkwbGY22rG7W9NXLQFI-HnShSJbduXXb99m8eMsItllCJYAcOwajla7L-hm2EesI5YEotoLON03yLH60k-bC-f-XJHjPkbEsKL0FvLunObHGuCBPZG8TXDhFU9lZtUamuHfRQO1bbiVnLIU0bUUamFGClQ4dg312ZE7ch-o3hTlC5QmD8F-A2yevjgxfhHgRr_1R7cjEWEU2t9lXHEKABfZzrEXjpC5LNJNmcEJb_wi9LUbbcUsP1K0a8pzLdKTsNPmksyeQEhGZlFXzmIEuZC2h4zBWUadbBf-TNbOEw-_0D6YY6njDjFozgrHFnW5bp5kdnUBeOYjT2zZxMIo61XR_1pTxCdb4kvWCyjO28FDybPraPuwsV27kF12peQzM5mBd6PFT9x8GPnb16xHkmvCQCE_hZm_6Hhx8sOWQwrvD3wHzZl9HWBak0MYKoLlfhMWzLpgsR6SJCtF9PmyPpoJdBrMN93PY95PzvoC8qwjwoBrBTUX5OYA8RBAtNTj_GilntqO-dSrcKIQAeLJhHq8t1zmQSotGroAQ2YJV353EVxiChda_77NK1Ek-8l_gq6A-rTl_v-QBj3dwE2CR7akJpHKYZ-IvpAxqgj6E2JBOiUe3Y6F3Z_zIuBg",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "wallet_id",
+							"value": "1141",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "100",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "+",
+							"type": "text"
+						},
+						{
+							"key": "category_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/transactions",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"transactions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "wallet_id",
+									"value": "1141",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "+",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/transactions",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"transactions"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 335,\n        \"user_id\": 61,\n        \"amount\": 100,\n        \"wallet_id\": 1144,\n        \"wallet\": \"Saman\",\n        \"status\": \"+\",\n        \"note\": null,\n        \"date\": \"2022-07-25 19:40:16\",\n        \"category_id\": 1,\n        \"category\": \"shopping\",\n        \"created_at\": \"2022-07-25T19:40:16.000000Z\",\n        \"updated_at\": \"2022-07-25T19:40:16.000000Z\"\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/transactions\"\n    }\n}"
+				},
+				{
+					"name": "required fields error",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "wallet_id",
+									"value": "1141",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "100",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "+",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/transactions",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"transactions"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"The amount field is required. (and 3 more errors)\",\n    \"errors\": {\n        \"amount\": [\n            \"The amount field is required.\"\n        ],\n        \"wallet_id\": [\n            \"The wallet id field is required.\"\n        ],\n        \"status\": [\n            \"The status field is required.\"\n        ],\n        \"category_id\": [\n            \"The category id field is required.\"\n        ]\n    }\n}"
+				},
+				{
+					"name": "transaction amout is more than wallet inventory",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "wallet_id",
+									"value": "1141",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "300",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "-",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/transactions",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"transactions"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"error\": \"Transaction amount is more than your wallet's inventory\",\n    \"meta\": {\n        \"status\": 422,\n        \"current\": \"http://127.0.0.1:8080/api/v1/transactions\",\n        \"payload\": []\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "List of User's Transactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzYzZmU1YjM5ZDg3ZGM1MWUzMDg4OWY0MTU2NmUyOGY5MDEwZTE3ODFhYzgzODQyNGUxOGQ4MTA5ZjBiOWM1YTE1NDFlM2JlMTU0NjUwOTEiLCJpYXQiOjE2NTg2NjU5NjAuMzg3NDg3LCJuYmYiOjE2NTg2NjU5NjAuMzg3NDksImV4cCI6MTY5MDIwMTk2MC4zNTA1OTIsInN1YiI6IjYxIiwic2NvcGVzIjpbXX0.AcilPPaFsTQMANPUQvCHo19ElmfKwr80TOj5cVKmOyOf63kPfkwbGY22rG7W9NXLQFI-HnShSJbduXXb99m8eMsItllCJYAcOwajla7L-hm2EesI5YEotoLON03yLH60k-bC-f-XJHjPkbEsKL0FvLunObHGuCBPZG8TXDhFU9lZtUamuHfRQO1bbiVnLIU0bUUamFGClQ4dg312ZE7ch-o3hTlC5QmD8F-A2yevjgxfhHgRr_1R7cjEWEU2t9lXHEKABfZzrEXjpC5LNJNmcEJb_wi9LUbbcUsP1K0a8pzLdKTsNPmksyeQEhGZlFXzmIEuZC2h4zBWUadbBf-TNbOEw-_0D6YY6njDjFozgrHFnW5bp5kdnUBeOYjT2zZxMIo61XR_1pTxCdb4kvWCyjO28FDybPraPuwsV27kF12peQzM5mBd6PFT9x8GPnb16xHkmvCQCE_hZm_6Hhx8sOWQwrvD3wHzZl9HWBak0MYKoLlfhMWzLpgsR6SJCtF9PmyPpoJdBrMN93PY95PzvoC8qwjwoBrBTUX5OYA8RBAtNTj_GilntqO-dSrcKIQAeLJhHq8t1zmQSotGroAQ2YJV353EVxiChda_77NK1Ek-8l_gq6A-rTl_v-QBj3dwE2CR7akJpHKYZ-IvpAxqgj6E2JBOiUe3Y6F3Z_zIuBg",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/transactions",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"transactions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/transactions",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"transactions"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 332,\n                \"user_id\": 61,\n                \"amount\": 0,\n                \"wallet_id\": 12,\n                \"wallet\": \"Main Wallet\",\n                \"status\": \"+\",\n                \"note\": null,\n                \"date\": \"2022-07-25 12:14:25\",\n                \"category_id\": 1,\n                \"category\": \"shopping\",\n                \"created_at\": \"2022-07-25T12:14:24.000000Z\",\n                \"updated_at\": \"2022-07-25T12:14:24.000000Z\"\n            },\n            {\n                \"id\": 333,\n                \"user_id\": 61,\n                \"amount\": 100,\n                \"wallet_id\": 1141,\n                \"wallet\": \"Tejarat2\",\n                \"status\": \"+\",\n                \"note\": null,\n                \"date\": \"2022-07-25 12:16:26\",\n                \"category_id\": 1,\n                \"category\": \"shopping\",\n                \"created_at\": \"2022-07-25T12:16:25.000000Z\",\n                \"updated_at\": \"2022-07-25T12:16:25.000000Z\"\n            },\n            {\n                \"id\": 334,\n                \"user_id\": 61,\n                \"amount\": 100,\n                \"wallet_id\": 1144,\n                \"wallet\": \"Saman\",\n                \"status\": \"+\",\n                \"note\": null,\n                \"date\": \"2022-07-25 19:39:44\",\n                \"category_id\": 1,\n                \"category\": \"shopping\",\n                \"created_at\": \"2022-07-25T19:39:44.000000Z\",\n                \"updated_at\": \"2022-07-25T19:39:44.000000Z\"\n            },\n            {\n                \"id\": 335,\n                \"user_id\": 61,\n                \"amount\": 100,\n                \"wallet_id\": 1144,\n                \"wallet\": \"Saman\",\n                \"status\": \"+\",\n                \"note\": null,\n                \"date\": \"2022-07-25 19:40:16\",\n                \"category_id\": 1,\n                \"category\": \"shopping\",\n                \"created_at\": \"2022-07-25T19:40:16.000000Z\",\n                \"updated_at\": \"2022-07-25T19:40:16.000000Z\"\n            },\n            {\n                \"id\": 336,\n                \"user_id\": 61,\n                \"amount\": 10,\n                \"wallet_id\": 1144,\n                \"wallet\": \"Saman\",\n                \"status\": \"-\",\n                \"note\": null,\n                \"date\": \"2022-07-25 19:44:02\",\n                \"category_id\": 1,\n                \"category\": \"shopping\",\n                \"created_at\": \"2022-07-25T19:44:01.000000Z\",\n                \"updated_at\": \"2022-07-25T19:44:01.000000Z\"\n            }\n        ],\n        \"lastPage\": 1,\n        \"currentPage\": 1\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/transactions\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "List of Wallet's Transactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzYzZmU1YjM5ZDg3ZGM1MWUzMDg4OWY0MTU2NmUyOGY5MDEwZTE3ODFhYzgzODQyNGUxOGQ4MTA5ZjBiOWM1YTE1NDFlM2JlMTU0NjUwOTEiLCJpYXQiOjE2NTg2NjU5NjAuMzg3NDg3LCJuYmYiOjE2NTg2NjU5NjAuMzg3NDksImV4cCI6MTY5MDIwMTk2MC4zNTA1OTIsInN1YiI6IjYxIiwic2NvcGVzIjpbXX0.AcilPPaFsTQMANPUQvCHo19ElmfKwr80TOj5cVKmOyOf63kPfkwbGY22rG7W9NXLQFI-HnShSJbduXXb99m8eMsItllCJYAcOwajla7L-hm2EesI5YEotoLON03yLH60k-bC-f-XJHjPkbEsKL0FvLunObHGuCBPZG8TXDhFU9lZtUamuHfRQO1bbiVnLIU0bUUamFGClQ4dg312ZE7ch-o3hTlC5QmD8F-A2yevjgxfhHgRr_1R7cjEWEU2t9lXHEKABfZzrEXjpC5LNJNmcEJb_wi9LUbbcUsP1K0a8pzLdKTsNPmksyeQEhGZlFXzmIEuZC2h4zBWUadbBf-TNbOEw-_0D6YY6njDjFozgrHFnW5bp5kdnUBeOYjT2zZxMIo61XR_1pTxCdb4kvWCyjO28FDybPraPuwsV27kF12peQzM5mBd6PFT9x8GPnb16xHkmvCQCE_hZm_6Hhx8sOWQwrvD3wHzZl9HWBak0MYKoLlfhMWzLpgsR6SJCtF9PmyPpoJdBrMN93PY95PzvoC8qwjwoBrBTUX5OYA8RBAtNTj_GilntqO-dSrcKIQAeLJhHq8t1zmQSotGroAQ2YJV353EVxiChda_77NK1Ek-8l_gq6A-rTl_v-QBj3dwE2CR7akJpHKYZ-IvpAxqgj6E2JBOiUe3Y6F3Z_zIuBg",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/v1/transactions?wallet_id=1141",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"transactions"
+					],
+					"query": [
+						{
+							"key": "wallet_id",
+							"value": "1141"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/v1/transactions?wallet_id=121&page=2",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"v1",
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "wallet_id",
+									"value": "121"
+								},
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"items\": [\n            {\n                \"id\": 332,\n                \"user_id\": 61,\n                \"amount\": 0,\n                \"wallet_id\": 12,\n                \"wallet\": \"Main Wallet\",\n                \"status\": \"+\",\n                \"note\": null,\n                \"date\": \"2022-07-25 12:14:25\",\n                \"category_id\": 1,\n                \"category\": \"shopping\",\n                \"created_at\": \"2022-07-25T12:14:24.000000Z\",\n                \"updated_at\": \"2022-07-25T12:14:24.000000Z\"\n            },\n            {\n                \"id\": 333,\n                \"user_id\": 61,\n                \"amount\": 100,\n                \"wallet_id\": 1141,\n                \"wallet\": \"Tejarat2\",\n                \"status\": \"+\",\n                \"note\": null,\n                \"date\": \"2022-07-25 12:16:26\",\n                \"category_id\": 1,\n                \"category\": \"shopping\",\n                \"created_at\": \"2022-07-25T12:16:25.000000Z\",\n                \"updated_at\": \"2022-07-25T12:16:25.000000Z\"\n            },\n            {\n                \"id\": 334,\n                \"user_id\": 61,\n                \"amount\": 100,\n                \"wallet_id\": 1144,\n                \"wallet\": \"Saman\",\n                \"status\": \"+\",\n                \"note\": null,\n                \"date\": \"2022-07-25 19:39:44\",\n                \"category_id\": 1,\n                \"category\": \"shopping\",\n                \"created_at\": \"2022-07-25T19:39:44.000000Z\",\n                \"updated_at\": \"2022-07-25T19:39:44.000000Z\"\n            },\n            {\n                \"id\": 335,\n                \"user_id\": 61,\n                \"amount\": 100,\n                \"wallet_id\": 1144,\n                \"wallet\": \"Saman\",\n                \"status\": \"+\",\n                \"note\": null,\n                \"date\": \"2022-07-25 19:40:16\",\n                \"category_id\": 1,\n                \"category\": \"shopping\",\n                \"created_at\": \"2022-07-25T19:40:16.000000Z\",\n                \"updated_at\": \"2022-07-25T19:40:16.000000Z\"\n            },\n            {\n                \"id\": 336,\n                \"user_id\": 61,\n                \"amount\": 10,\n                \"wallet_id\": 1144,\n                \"wallet\": \"Saman\",\n                \"status\": \"-\",\n                \"note\": null,\n                \"date\": \"2022-07-25 19:44:02\",\n                \"category_id\": 1,\n                \"category\": \"shopping\",\n                \"created_at\": \"2022-07-25T19:44:01.000000Z\",\n                \"updated_at\": \"2022-07-25T19:44:01.000000Z\"\n            }\n        ],\n        \"lastPage\": 1,\n        \"currentPage\": 1\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/transactions?wallet_id=1141\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzYzZmU1YjM5ZDg3ZGM1MWUzMDg4OWY0MTU2NmUyOGY5MDEwZTE3ODFhYzgzODQyNGUxOGQ4MTA5ZjBiOWM1YTE1NDFlM2JlMTU0NjUwOTEiLCJpYXQiOjE2NTg2NjU5NjAuMzg3NDg3LCJuYmYiOjE2NTg2NjU5NjAuMzg3NDksImV4cCI6MTY5MDIwMTk2MC4zNTA1OTIsInN1YiI6IjYxIiwic2NvcGVzIjpbXX0.AcilPPaFsTQMANPUQvCHo19ElmfKwr80TOj5cVKmOyOf63kPfkwbGY22rG7W9NXLQFI-HnShSJbduXXb99m8eMsItllCJYAcOwajla7L-hm2EesI5YEotoLON03yLH60k-bC-f-XJHjPkbEsKL0FvLunObHGuCBPZG8TXDhFU9lZtUamuHfRQO1bbiVnLIU0bUUamFGClQ4dg312ZE7ch-o3hTlC5QmD8F-A2yevjgxfhHgRr_1R7cjEWEU2t9lXHEKABfZzrEXjpC5LNJNmcEJb_wi9LUbbcUsP1K0a8pzLdKTsNPmksyeQEhGZlFXzmIEuZC2h4zBWUadbBf-TNbOEw-_0D6YY6njDjFozgrHFnW5bp5kdnUBeOYjT2zZxMIo61XR_1pTxCdb4kvWCyjO28FDybPraPuwsV27kF12peQzM5mBd6PFT9x8GPnb16xHkmvCQCE_hZm_6Hhx8sOWQwrvD3wHzZl9HWBak0MYKoLlfhMWzLpgsR6SJCtF9PmyPpoJdBrMN93PY95PzvoC8qwjwoBrBTUX5OYA8RBAtNTj_GilntqO-dSrcKIQAeLJhHq8t1zmQSotGroAQ2YJV353EVxiChda_77NK1Ek-8l_gq6A-rTl_v-QBj3dwE2CR7akJpHKYZ-IvpAxqgj6E2JBOiUe3Y6F3Z_zIuBg",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/transactions/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"transactions",
+						"1"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/transactions/336",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"transactions",
+								"336"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 336,\n        \"user_id\": 61,\n        \"amount\": 10,\n        \"wallet_id\": 1144,\n        \"wallet\": \"Saman\",\n        \"status\": \"-\",\n        \"note\": null,\n        \"date\": \"2022-07-25 19:44:02\",\n        \"category_id\": 1,\n        \"category\": \"shopping\",\n        \"created_at\": \"2022-07-25T19:44:01.000000Z\",\n        \"updated_at\": \"2022-07-25T19:44:01.000000Z\"\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/transactions/336\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMzYzZmU1YjM5ZDg3ZGM1MWUzMDg4OWY0MTU2NmUyOGY5MDEwZTE3ODFhYzgzODQyNGUxOGQ4MTA5ZjBiOWM1YTE1NDFlM2JlMTU0NjUwOTEiLCJpYXQiOjE2NTg2NjU5NjAuMzg3NDg3LCJuYmYiOjE2NTg2NjU5NjAuMzg3NDksImV4cCI6MTY5MDIwMTk2MC4zNTA1OTIsInN1YiI6IjYxIiwic2NvcGVzIjpbXX0.AcilPPaFsTQMANPUQvCHo19ElmfKwr80TOj5cVKmOyOf63kPfkwbGY22rG7W9NXLQFI-HnShSJbduXXb99m8eMsItllCJYAcOwajla7L-hm2EesI5YEotoLON03yLH60k-bC-f-XJHjPkbEsKL0FvLunObHGuCBPZG8TXDhFU9lZtUamuHfRQO1bbiVnLIU0bUUamFGClQ4dg312ZE7ch-o3hTlC5QmD8F-A2yevjgxfhHgRr_1R7cjEWEU2t9lXHEKABfZzrEXjpC5LNJNmcEJb_wi9LUbbcUsP1K0a8pzLdKTsNPmksyeQEhGZlFXzmIEuZC2h4zBWUadbBf-TNbOEw-_0D6YY6njDjFozgrHFnW5bp5kdnUBeOYjT2zZxMIo61XR_1pTxCdb4kvWCyjO28FDybPraPuwsV27kF12peQzM5mBd6PFT9x8GPnb16xHkmvCQCE_hZm_6Hhx8sOWQwrvD3wHzZl9HWBak0MYKoLlfhMWzLpgsR6SJCtF9PmyPpoJdBrMN93PY95PzvoC8qwjwoBrBTUX5OYA8RBAtNTj_GilntqO-dSrcKIQAeLJhHq8t1zmQSotGroAQ2YJV353EVxiChda_77NK1Ek-8l_gq6A-rTl_v-QBj3dwE2CR7akJpHKYZ-IvpAxqgj6E2JBOiUe3Y6F3Z_zIuBg",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "_method",
+							"value": "PUT",
+							"type": "text"
+						},
+						{
+							"key": "amount",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "status",
+							"value": "+",
+							"type": "text"
+						},
+						{
+							"key": "wallet_id",
+							"value": "122",
+							"type": "text"
+						},
+						{
+							"key": "category_id",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/transactions/129",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"transactions",
+						"129"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "not found exception",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "+",
+									"type": "text"
+								},
+								{
+									"key": "wallet_id",
+									"value": "122",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/transactions/336",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"transactions",
+								"336"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"No query results for model [App\\\\Models\\\\Transaction] 336\",\n    \"exception\": \"Symfony\\\\Component\\\\HttpKernel\\\\Exception\\\\NotFoundHttpException\",\n    \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php\",\n    \"line\": 377,\n    \"trace\": [\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php\",\n            \"line\": 353,\n            \"function\": \"prepareException\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php\",\n            \"line\": 51,\n            \"function\": \"render\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Exceptions\\\\Handler\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 185,\n            \"function\": \"handleException\",\n            \"class\": \"Illuminate\\\\Routing\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php\",\n            \"line\": 126,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php\",\n            \"line\": 102,\n            \"function\": \"handleRequest\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php\",\n            \"line\": 54,\n            \"function\": \"handleRequestUsingNamedLimiter\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Routing\\\\Middleware\\\\ThrottleRequests\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Auth/Middleware/Authenticate.php\",\n            \"line\": 44,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Auth\\\\Middleware\\\\Authenticate\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Routing/Router.php\",\n            \"line\": 726,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Routing/Router.php\",\n            \"line\": 703,\n            \"function\": \"runRouteWithinStack\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Routing/Router.php\",\n            \"line\": 667,\n            \"function\": \"runRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Routing/Router.php\",\n            \"line\": 656,\n            \"function\": \"dispatchToRoute\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\",\n            \"line\": 167,\n            \"function\": \"dispatch\",\n            \"class\": \"Illuminate\\\\Routing\\\\Router\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 141,\n            \"function\": \"Illuminate\\\\Foundation\\\\Http\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php\",\n            \"line\": 31,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ConvertEmptyStringsToNull\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php\",\n            \"line\": 21,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php\",\n            \"line\": 40,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TransformsRequest\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\TrimStrings\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php\",\n            \"line\": 27,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\ValidatePostSize\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php\",\n            \"line\": 86,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Middleware\\\\PreventRequestsDuringMaintenance\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php\",\n            \"line\": 62,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\HandleCors\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php\",\n            \"line\": 39,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 180,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Http\\\\Middleware\\\\TrustProxies\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php\",\n            \"line\": 116,\n            \"function\": \"Illuminate\\\\Pipeline\\\\{closure}\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\",\n            \"line\": 142,\n            \"function\": \"then\",\n            \"class\": \"Illuminate\\\\Pipeline\\\\Pipeline\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php\",\n            \"line\": 111,\n            \"function\": \"sendRequestThroughRouter\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        },\n        {\n            \"file\": \"/var/www/public/index.php\",\n            \"line\": 52,\n            \"function\": \"handle\",\n            \"class\": \"Illuminate\\\\Foundation\\\\Http\\\\Kernel\",\n            \"type\": \"->\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "_method",
+									"value": "PUT",
+									"type": "text"
+								},
+								{
+									"key": "amount",
+									"value": "10",
+									"type": "text"
+								},
+								{
+									"key": "status",
+									"value": "+",
+									"type": "text"
+								},
+								{
+									"key": "wallet_id",
+									"value": "122",
+									"type": "text"
+								},
+								{
+									"key": "category_id",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/transactions/129",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"transactions",
+								"129"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": {\n        \"id\": 333,\n        \"user_id\": 61,\n        \"amount\": 100,\n        \"wallet_id\": 1144,\n        \"wallet\": \"Saman\",\n        \"status\": \"+\",\n        \"note\": null,\n        \"date\": \"2022-07-25 12:16:26\",\n        \"category_id\": 1,\n        \"category\": \"shopping\",\n        \"created_at\": \"2022-07-25T12:16:25.000000Z\",\n        \"updated_at\": \"2022-07-25T19:51:43.000000Z\"\n    },\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/transactions/333\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Delete Category",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiZGNkMjRiNzA2MmZlMmU0ZmEzYzNhOTc5NTZhMTI3NDA2ZDQ1NjZkZDU0OWM5MTc0OTc3MDk2NmYwNWM0YmRlMzM1MzZhMDMxYmEzMDMwMmUiLCJpYXQiOjE2NTg3NzQ3ODYuOTY5ODg4LCJuYmYiOjE2NTg3NzQ3ODYuOTY5OSwiZXhwIjoxNjkwMzEwNzg2Ljg5NTcxNiwic3ViIjoiNTQyIiwic2NvcGVzIjpbXX0.np_v6Ru1oEkiCMv10eEk-_BQhKUokJeDG1ePykip4sjrXmrIG4FO6CJRsHzPpSmaLS2ZGBUvcVKzw9OPxlXl13zyZ4M2--fuEN0KsVDALIkv4FnnWxlf7b3TCZp_PJiMtF5LaiqH1WXdT1SHjYZgMdH3PTppPG0FyngNFv1GZkjuSGY9eKU6lWc6Lqeit8OYnod3rpYwi4vC5MHcFK5ocL5-IFPyf189lFpu5myXMxEYCewQSsFzEYb9VSOIILSlV4cI3cz9_igYNPDXb3iI2scmJ4E6bgHZ3Cj8f3oJ3slSoWHp7DWKb9JR9cHl8ofA-53-hG2rg3EPgBj4J5rexy8yZI8iwNy-sMHD2Q4HwCFexlZuTMKxBQe_H3dm6L0k9H4pxCrtcDJmgUZN9nK6i529MR9VBBdABeojqyVIaFCD4sobNtXO18lBSBsB90-XGRK23d50BU6PcUL5fSNSX9Si2bmNvz7VZiNtLsuDHfe32dD5ADNKK8-GnqbJn995r4bUJiTm_rmPHB8OuDXwYssMNwIulY2onmnhnvtEZNyQXbuvkgf6CVrYKxLVx_U9ESBOrJC512rE1uDHuzoddXpmz8-NMmBCO_8m9bRQORcrzbuleqXcWnDhrFIIR0ZIH72-h7j0fSqKYRf8kDK7GUOD1lo5XgWhiaZmZG1C5NY",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.{{token}}.32jaFeLE4elPjNLyiCYrbWWk20PXCGptK6_2Q7GW_f8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://127.0.0.1:8080/api/{{version}}/categories/1801",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"{{version}}",
+						"categories",
+						"1801"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "successfull request",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://127.0.0.1:8080/api/{{version}}/categories/1801",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"{{version}}",
+								"categories",
+								"1801"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"message\": \"Your category is deleted successfully\",\n    \"meta\": {\n        \"status\": 200,\n        \"current\": \"http://127.0.0.1:8080/api/v1/categories/1801\",\n        \"payload\": []\n    }\n}"
+				}
+			]
+		}
+	]
+}
