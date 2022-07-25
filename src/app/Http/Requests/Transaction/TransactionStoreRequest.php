@@ -32,4 +32,34 @@ class TransactionStoreRequest extends FormRequest
             'category_id' => 'required|integer|exists:categories,id',
         ];
     }
+    
+    /**
+     * bodyParameters
+     *
+     * @return array
+     */
+    public function bodyParameters()
+    {
+        return [
+            'user_id' => [
+                'description' => 'The ID of owner user, No need to fill this field. This will extract automatically from token'
+            ],
+            'amount' => [
+                'description' => 'The amount of the Transaction.',
+                'example' => 10
+            ],
+            'amount' => [
+                'description' => 'The wallet id of the Transaction.',
+                'example' => 1
+            ],
+            'status' => [
+                'description' => 'The status of the Transaction.',
+                'example' => '+',
+            ],
+            'category_id' => [
+                'description' => 'The category id of the Transaction.',
+                'example' => 1,
+            ],
+        ];
+    }
 }

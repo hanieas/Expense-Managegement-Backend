@@ -26,6 +26,8 @@ class CategoryController extends Controller
      * @param  CategoryRepository $repository
      * @param  CategoryResponder $responder
      * @return void
+     * @group Category CRUD
+     * @authenticated
      */
     public function __construct(ICategoryRepository $repository, IResponder $responder)
     {
@@ -37,6 +39,8 @@ class CategoryController extends Controller
      * Display a listing of the resource.
      *
      * @return JsonResponse
+     * @group Category CRUD
+     * @authenticated
      */
     public function index()
     {
@@ -49,6 +53,8 @@ class CategoryController extends Controller
      *
      * @param  CategoryStoreRequest  $request
      * @return JsonResponse
+     * @group Category CRUD
+     * @authenticated
      */
     public function store(CategoryStoreRequest $request): JsonResponse
     {
@@ -61,6 +67,8 @@ class CategoryController extends Controller
      *
      * @param  Category  $category
      * @return JsonResponse
+     * @group Category CRUD
+     * @authenticated
      */
     public function show(Category $category): JsonResponse
     {
@@ -76,6 +84,8 @@ class CategoryController extends Controller
      * @param  CategoryUpdateRequest  $request
      * @param  Category  $category
      * @return JsonResponse
+     * @group Category CRUD
+     * @authenticated
      */
     public function update(CategoryUpdateRequest $request, Category $category): JsonResponse
     {
@@ -91,6 +101,8 @@ class CategoryController extends Controller
      *
      * @param  Category  $category
      * @return JsonResponse
+     * @group Category CRUD
+     * @authenticated
      */
     public function destroy(Category $category): JsonResponse
     {

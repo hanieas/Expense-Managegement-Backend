@@ -9,7 +9,6 @@ use App\Repositories\Interfaces\ITransactionRepository;
 use App\Repositories\Interfaces\IWalletRepository;
 use App\Responders\IResponder;
 use App\Responders\Message;
-use Illuminate\Http\Request;
 use App\Responders\TransactionResponder;
 
 class TransactionController extends Controller
@@ -36,6 +35,8 @@ class TransactionController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * @group Transaction CRUD
+     * @authenticated
      */
     public function index()
     {
@@ -54,6 +55,8 @@ class TransactionController extends Controller
      *
      * @param  TransactionStoreRequest  $request
      * @return \Illuminate\Http\Response
+     * @group Transaction CRUD
+     * @authenticated
      */
     public function store(TransactionStoreRequest $request)
     {
@@ -71,6 +74,8 @@ class TransactionController extends Controller
      *
      * @param  Transaction $transaction
      * @return \Illuminate\Http\Response
+     * @group Transaction CRUD
+     * @authenticated
      */
     public function show(Transaction $transaction)
     {
@@ -86,6 +91,8 @@ class TransactionController extends Controller
      * @param  TransactionUpdateRequest  $request
      * @param  Transaction $transaction
      * @return \Illuminate\Http\Response
+     * @group Transaction CRUD
+     * @authenticated
      */
     public function update(TransactionUpdateRequest $request, Transaction $transaction)
     {
@@ -107,6 +114,8 @@ class TransactionController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * @group Transaction CRUD
+     * @authenticated
      */
     public function destroy(Transaction $transaction)
     {
