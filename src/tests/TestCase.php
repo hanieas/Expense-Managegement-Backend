@@ -51,7 +51,7 @@ abstract class TestCase extends BaseTestCase
         return User::factory($count)->create(['currency_id' => $currency->id]);
     }
 
-    protected function createCategory($count,$attributes)
+    protected function createCategory($count,$attributes=[])
     {
         return Category::factory($count)->create($attributes);
     }
@@ -63,7 +63,14 @@ abstract class TestCase extends BaseTestCase
 
     protected function createTransaction($count,$attributes=[])
     {
-        Category::factory()->create();
+        if(!in_array('category_id',$attributes))
+        {
+            Category::factory()->create();
+        }
+        if(!in_array('wallet_id',$attributes))
+        {
+            Wallet::factory()->create();
+        }
         return Transaction::factory($count)->create($attributes);
     }
 }

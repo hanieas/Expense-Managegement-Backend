@@ -28,7 +28,7 @@ class TransactionUpdateRequest extends FormRequest
             'user_id' => 'required|integer|exists:users,id',
             'amount' => 'required|integer',
             'wallet_id' => 'required|integer|exists:wallets,id',
-            'status' => 'in:'.Transaction::INCOME_SIGN.','.Transaction::EXPENSE_SIGN,
+            'status' => 'required|in:'.Transaction::INCOME_SIGN.','.Transaction::EXPENSE_SIGN,
             'category_id' => 'required|integer|exists:categories,id',
         ];
     }

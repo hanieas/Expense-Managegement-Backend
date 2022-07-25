@@ -22,6 +22,26 @@ class Transaction extends Model
         'category_id',
     ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'wallet_id' => 'integer',
+        'category_id' => 'integer',
+    ];
+    
+    /**
+     * getPathAttribute
+     *
+     * @return string
+     */
+    public function getPathAttribute(): string
+    {
+        return env('PREFIX_URL') . '/transactions';
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');

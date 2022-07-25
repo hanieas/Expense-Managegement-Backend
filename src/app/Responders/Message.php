@@ -27,4 +27,15 @@ class Message
     const TRANSACTION_AMOUNT_ERROR = "Transaction amount is more than your wallet's inventory";
     const ONLY_TRANSACTION_OWNER_CAN_GET_IT = "You dont have permission to get this transaction.";
     const TRANSACTION_DELETED = 'The transaction is deleted successfully';
+    const TRANSACTION_AMOUNT_IS_REQUIRED = "The amount field is required.";
+    const TRANSACTION_AMOUNT_SHOUD_BE_INTEGER = "The amount must be an integer.";
+    const TRANSACTION_WALLET_ID_IS_REQUIRED ="The wallet id field is required.";
+    const TRANSACTION_WALLET_ID_SHOUD_BE_INTEGER  ="The wallet id must be an integer.";
+    const TRANSACTION_WALLET_ID_IS_INVALID = "The selected wallet id is invalid.";
+    const TRANSACTION_STATUS_IS_REQUIRED = "The status field is required.";
+    const TRANSACTION_STATUS_IS_INVALID = "The selected status is invalid.";
+    const TRANSACTION_CATEGOEY_ID_IS_REQUIRED = "The category id field is required.";
+    const TRANSACTION_CATEGOEY_ID_SHOUD_BE_INTEGER  = "The category id must be an integer.";
+    const TRANSACTION_CATEGORY_ID_IS_INVALID = "The selected category id is invalid.";
+
 }
