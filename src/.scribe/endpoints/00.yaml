@@ -1,88 +1,12 @@
-name: 'User Authentication'
+name: 'Category CRUD'
 description: ''
 endpoints:
   -
     httpMethods:
-      - POST
-    uri: api/v1/user/signup
+      - GET
+    uri: api/v1/categories
     metadata:
-      title: Signup
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    queryParameters: []
-    bodyParameters:
-      email:
-        name: email
-        description: 'The email of the user.'
-        required: false
-        example: hanieasemi@gmail.com
-        type: required
-        custom: []
-      password:
-        name: password
-        description: 'The password of the user.'
-        required: false
-        example: password
-        type: required
-        custom: []
-      currency_id:
-        name: currency_id
-        description: 'The currency_id of the user.'
-        required: true
-        example: 9
-        type: integer
-        custom: []
-      username:
-        name: username
-        description: 'The username of the user.'
-        required: true
-        example: username
-        type: string
-        custom: []
-    responses: []
-    responseFields: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/user/login
-    metadata:
-      title: Login
-      description: ''
-      authenticated: false
-      custom: []
-    headers:
-      Content-Type: application/json
-      Accept: application/json
-    urlParameters: []
-    queryParameters: []
-    bodyParameters:
-      email:
-        name: email
-        description: 'The email of user.'
-        required: false
-        example: hanieasemi@gmail.com
-        type: required
-        custom: []
-      password:
-        name: password
-        description: 'The password of user.'
-        required: false
-        example: password
-        type: required
-        custom: []
-    responses: []
-    responseFields: []
-  -
-    httpMethods:
-      - POST
-    uri: api/v1/user/logout
-    metadata:
-      title: Logout
+      title: 'Display a listing of the resource.'
       description: ''
       authenticated: true
       custom: []
@@ -91,6 +15,104 @@ endpoints:
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/categories
+    metadata:
+      title: 'Store a newly created resource in storage.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      user_id:
+        name: user_id
+        description: 'The ID of owner user, No need to fill this field. This will extract automatically from token.'
+        required: true
+        example: 8
+        type: integer
+        custom: []
+      name:
+        name: name
+        description: 'The name of the Category.'
+        required: true
+        example: Category1
+        type: string
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/categories/{id}'
+    metadata:
+      title: 'Display the specified resource.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the category.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 401
+        content: '{"message":"Unauthenticated."}'
+        headers:
+          cache-control: 'no-cache, private'
+          content-type: application/json
+          access-control-allow-origin: '*'
+        description: null
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/categories/{id}'
+    metadata:
+      title: 'Remove the specified resource from storage.'
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'The ID of the category.'
+        required: true
+        example: 1
+        type: integer
+        custom: []
     queryParameters: []
     bodyParameters: []
     responses: []

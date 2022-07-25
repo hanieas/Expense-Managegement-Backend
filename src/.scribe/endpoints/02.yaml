@@ -1,0 +1,97 @@
+name: 'User Authentication'
+description: ''
+endpoints:
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/signup
+    metadata:
+      title: Signup
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'The email of the user.'
+        required: false
+        example: hanieasemi@gmail.com
+        type: required
+        custom: []
+      password:
+        name: password
+        description: 'The password of the user.'
+        required: false
+        example: password
+        type: required
+        custom: []
+      currency_id:
+        name: currency_id
+        description: 'The currency_id of the user.'
+        required: true
+        example: 9
+        type: integer
+        custom: []
+      username:
+        name: username
+        description: 'The username of the user.'
+        required: true
+        example: username
+        type: string
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/login
+    metadata:
+      title: Login
+      description: ''
+      authenticated: false
+      custom: []
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      email:
+        name: email
+        description: 'The email of user.'
+        required: false
+        example: hanieasemi@gmail.com
+        type: required
+        custom: []
+      password:
+        name: password
+        description: 'The password of user.'
+        required: false
+        example: password
+        type: required
+        custom: []
+    responses: []
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/user/logout
+    metadata:
+      title: Logout
+      description: ''
+      authenticated: true
+      custom: []
+    headers:
+      Authorization: 'Bearer {YOUR_AUTH_KEY}'
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters: []
+    responses: []
+    responseFields: []
