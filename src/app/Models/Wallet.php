@@ -18,6 +18,10 @@ class Wallet extends Model
         'user_id',
         'inventory',
     ];
+
+    protected $casts = [
+        'inventory' => 'integer',
+    ];
     
     /**
      * getPathAttribute

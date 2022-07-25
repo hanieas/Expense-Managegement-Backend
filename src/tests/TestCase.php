@@ -19,7 +19,7 @@ abstract class TestCase extends BaseTestCase
      * @param  array $attributes
      * @return mixed
      */
-    protected function callRequest($method = 'post',string $url,array $attributes = []): mixed
+    protected function callRequest($method = 'post', string $url, array $attributes = []): mixed
     {
         $response = $this->withHeaders([
             'Accept' => 'application/json'
@@ -40,7 +40,7 @@ abstract class TestCase extends BaseTestCase
         return $token;
     }
 
-    protected function createCurrency($count=1)
+    protected function createCurrency($count = 1)
     {
         return Currency::factory($count)->create();
     }
@@ -51,24 +51,22 @@ abstract class TestCase extends BaseTestCase
         return User::factory($count)->create(['currency_id' => $currency->id]);
     }
 
-    protected function createCategory($count,$attributes=[])
+    protected function createCategory($count, $attributes = [])
     {
         return Category::factory($count)->create($attributes);
     }
 
-    protected function createWallet($count,$attributes=[])
+    protected function createWallet($count, $attributes = [])
     {
         return Wallet::factory($count)->create($attributes);
     }
 
-    protected function createTransaction($count,$attributes=[])
+    protected function createTransaction($count, $attributes = [])
     {
-        if(!in_array('category_id',$attributes))
-        {
+        if (!in_array('category_id', $attributes)) {
             Category::factory()->create();
         }
-        if(!in_array('wallet_id',$attributes))
-        {
+        if (!in_array('wallet_id', $attributes)) {
             Wallet::factory()->create();
         }
         return Transaction::factory($count)->create($attributes);

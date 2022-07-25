@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Transaction;
 
-use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Wallet;
 use App\Responders\Message;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Artisan;
@@ -18,8 +18,8 @@ class TransactionDeleteTest extends TestCase
     /** @var User */
     protected User $user;
 
-    /** @var Transaction */
-    protected Transaction $wallet;
+    /** @var Wallet */
+    protected Wallet $wallet;
 
     /** @var string */
     protected string $url, $name;
@@ -30,8 +30,14 @@ class TransactionDeleteTest extends TestCase
 
         Artisan::call('passport:install');
         $this->user = $this->createUser(1)[0];
-        $this->transactions = $this->createTransaction(1)[0];
-        $this->url = $this->transactions->path . '/' . $this->transactions->id;
+        $this->wallet = $this->createWallet(1, ['inventory' => 200])[0];
+        $this->amount = 20;
+        $this->transaction = $this->createTransaction(1, [
+            'wallet_id' => $this->wallet->id,
+            'amount' => $this->amount,
+            'status' => '+'
+        ])[0];
+        $this->url = $this->transaction->path . '/' . $this->transaction->id;
         $this->method = 'delete';
     }
 
@@ -56,8 +62,11 @@ class TransactionDeleteTest extends TestCase
         Gate::define('check-transaction-own', function () {
             return true;
         });
+        $expectedInventory = $this->transaction->wallet->inventory - $this->amount;
         $response = $this->callRequest($this->method, $this->url);
+        $actualInventory = Wallet::find($this->wallet->id)->inventory;
         $response->assertStatus(200);
-        $this->assertDatabaseCount('transactions', 0);
+        $this->assertDatabaseCount('transactions', 0)
+            ->assertEquals($expectedInventory, $actualInventory);
     }
 }
