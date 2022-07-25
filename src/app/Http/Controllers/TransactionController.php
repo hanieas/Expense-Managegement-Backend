@@ -92,7 +92,8 @@ class TransactionController extends Controller
         if ($this->repository->checkOwn($transaction)) {
             $wallet = $this->walletRepository->find($transaction->wallet_id);
             $wallet = $this->repository->walletAfterDeletingTransaction($wallet,$transaction);
-            if ($request['status'] === '-' && $wallet->inventory < $request['amount']) {
+            $newWalletInventory = $this->walletRepository->find($request['wallet_id'])->inventory;
+            if ($request['status'] === '-' && ( $wallet->inventory < $request['amount'] || $newWalletInventory<$request['amount'])) {
                 return $this->responder->failed(Message::TRANSACTION_AMOUNT_ERROR, 422);
             }
             $transaction->update($request->validated());
