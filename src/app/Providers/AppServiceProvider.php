@@ -11,6 +11,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Wallet;
 use App\Observers\TransactionObserver;
+use App\Observers\WalletObserver;
 use App\Repositories\CategoryRepository;
 use App\Repositories\UserRepository;
 use App\Repositories\WalletRepository;
@@ -79,5 +80,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Transaction::observe(TransactionObserver::class);
+        Wallet::observe(WalletObserver::class);
     }
 }
