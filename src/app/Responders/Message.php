@@ -25,4 +25,6 @@ class Message
     const CATEGORY_NAME_SHOULD_BE_UNIQUE = "The name has already been taken.";
     const ONLY_CATEGORY_OWNER_CAN_GET_IT = "You dont own this category.";
     const TRANSACTION_AMOUNT_ERROR = "Transaction amount is more than your wallet's inventory";
+    const ONLY_TRANSACTION_OWNER_CAN_GET_IT = "You dont have permission to get this transaction.";
+    const TRANSACTION_DELETED = 'The transaction is deleted successfully';
 }

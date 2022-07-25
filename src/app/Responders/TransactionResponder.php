@@ -10,7 +10,7 @@ class TransactionResponder extends BaseResponder implements IResponder
 {
     public function respondResource(mixed $data, int $status = 200, array $headers = []): JsonResponse
     {
-        // $data = new TransactionResource($data);
+        $data = new TransactionResource($data);
         return $this->makeApiResponse($data,$status);
     }
 

@@ -65,6 +65,10 @@ class AppServiceProvider extends ServiceProvider
                 $app->make(WalletRepository::class)
             );
         });
+        //Transaction Observer 
+        $this->app->bind(TransactionObserver::class, function ($app) {
+            return new TransactionObserver($app->make(TransactionRepository::class),$app->make(WalletRepository::class));
+        });
     }
 
     /**

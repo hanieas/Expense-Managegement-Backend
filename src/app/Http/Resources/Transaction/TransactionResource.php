@@ -17,13 +17,14 @@ class TransactionResource extends JsonResource
         return [
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'amoutn' => (int)$this->amount,
+            'amount' => (int)$this->amount,
             'wallet_id' => $this->wallet_id,
             'wallet' => $this->wallet->name,
             'status' => $this->status,
             'note' => $this->note,
             'date' => $this->date,
             'category_id' => $this->category_id,
+            'category' => $this->category->name,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

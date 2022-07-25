@@ -14,8 +14,11 @@ class TransactionCollection extends ResourceCollection
      */
     public function toArray($request)
     {
+        parent::toArray($request);
         return [
-            'items' => $this->collection,
+            'items' => $this->collection->toArray(),
+            'lastPage' => $this->lastPage(),
+            'currentPage' => $this->currentPage(),
         ];
     }
 }

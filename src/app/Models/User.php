@@ -112,4 +112,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Category::class,'user_id');
     }
+    
+    /**
+     * The user has a list of transactions.
+     *
+     * @return void
+     */
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class,'user_id');
+    }
 }
