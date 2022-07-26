@@ -31,7 +31,8 @@ class WalletStoreRequest extends FormRequest
                 'required',
                 Rule::unique('wallets')->where(function ($query) {
                     return $query->where('name', '=', request()->name)
-                        ->where('user_id', '=', Auth::user()->id);
+                        ->where('user_id', '=', Auth::user()->id)
+                        ->whereNull('deleted_at');
                 })
             ],
             'inventory' => 'integer',

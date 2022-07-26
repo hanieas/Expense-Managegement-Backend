@@ -30,7 +30,8 @@ class WalletUpdateRequest extends FormRequest
                 'required',
                 Rule::unique('wallets')->where(function ($query) {
                     return $query->where('name', '=', request()->name)
-                        ->where('user_id', '=', Auth::user()->id);
+                        ->where('user_id', '=', Auth::user()->id)
+                        ->whereNull('deleted_at');
                 })->ignore($this->wallet->id)
             ],
             'inventory' => 'required|integer',
