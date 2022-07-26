@@ -25,3 +25,15 @@
 - [ ] As a signed in user, I want to get a Monthly report
 - [ ] As a signed in user, I want to get a Weekly report
 - [ ] As a signed in user, I want to get a Daily report
+
+## Running Project
+1. ``` git clone git@github.com:hanieas/Expense-Mgmt-Backend.git ```
+2. ``` cd src ```
+3. ``` cp .env.example .env ```
+4. ``` docker-compose exec php composer install ```
+5. ``` docker-compose build ```
+6. ``` docker-compose up -d ```
+7. ``` docker-compose exec php php artisan key:generate ```
+8. ``` docker-compose exec php php artisan migrate ```
+9. ``` docker-compose exec php php artisan db:seed ```
+10. ``` docker-compose exec php php artisan passport:install ```
